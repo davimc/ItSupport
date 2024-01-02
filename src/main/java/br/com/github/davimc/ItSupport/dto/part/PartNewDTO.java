@@ -15,8 +15,12 @@ public class PartNewDTO {
     @Positive(message = "price cannot be negative")
     private Double price;
 
+    @NotNull(message = "quantity is required")
+    @PositiveOrZero(message = "quantity cannot be negative")
+    private Integer quantity;
+
     public Part copyToEntity() {
-        return new Part(null, name, price);
+        return new Part(null, name, price, quantity);
     }
 
     public String getName() {

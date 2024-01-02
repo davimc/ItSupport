@@ -18,6 +18,7 @@ public class Part {
     private Long id;
     private String name;
     private Double price;
+    private Integer quantity;
 
     @Override
     public boolean equals(Object o) {
