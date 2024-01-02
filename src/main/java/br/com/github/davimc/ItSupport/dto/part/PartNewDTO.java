@@ -1,4 +1,4 @@
-package br.com.github.davimc.ItSupport.dto;
+package br.com.github.davimc.ItSupport.dto.part;
 
 import br.com.github.davimc.ItSupport.entities.Part;
 

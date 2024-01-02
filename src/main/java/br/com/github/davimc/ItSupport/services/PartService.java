@@ -1,7 +1,7 @@
 package br.com.github.davimc.ItSupport.services;
 
-import br.com.github.davimc.ItSupport.dto.PartDTO;
-import br.com.github.davimc.ItSupport.dto.PartNewDTO;
+import br.com.github.davimc.ItSupport.dto.part.PartDTO;
+import br.com.github.davimc.ItSupport.dto.part.PartNewDTO;
 import br.com.github.davimc.ItSupport.entities.Part;
 import br.com.github.davimc.ItSupport.repositories.PartRepository;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;

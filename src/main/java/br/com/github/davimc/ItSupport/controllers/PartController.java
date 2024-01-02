@@ -1,14 +1,13 @@
 package br.com.github.davimc.ItSupport.controllers;
 
-import br.com.github.davimc.ItSupport.dto.PartDTO;
-import br.com.github.davimc.ItSupport.dto.PartNewDTO;
+import br.com.github.davimc.ItSupport.dto.part.PartDTO;
+import br.com.github.davimc.ItSupport.dto.part.PartNewDTO;
 import br.com.github.davimc.ItSupport.services.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
