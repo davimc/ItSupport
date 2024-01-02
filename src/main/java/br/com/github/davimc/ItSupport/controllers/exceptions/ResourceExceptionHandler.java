@@ -24,4 +24,16 @@ public class ResourceExceptionHandler {
 
         return ResponseEntity.status(status).body(err);
     }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<StandardError> entityNotFound(IllegalArgumentException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError err = new StandardError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(status.value());
+        err.setError("Illegal argument");
+        err.setMessage(e.getMessage());
+        err.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(err);
+    }
 }
