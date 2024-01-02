@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +23,8 @@ public class Authorization {
     private LocalDateTime createdAt;
     private LocalDateTime answeredAt;
     private Boolean isAccept;
+
+    private String note;
 
     @Override
     public boolean equals(Object o) {
