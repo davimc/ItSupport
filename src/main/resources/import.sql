@@ -1,3 +1,5 @@
+INSERT INTO tb_users(type, created_At, created_By, name, email, password) VALUES ('A','2023-12-19', 1, 'Davi','davi@suportinf.com', '123456')
+
 INSERT INTO tb_parts (name, price, quantity) VALUES ('memoria ram', 75.00,3);
 INSERT INTO tb_parts (name, price, quantity) VALUES ('HD', 175.00,8);
 INSERT INTO tb_parts (name, price, quantity) VALUES ('SSD', 300.00,20);
