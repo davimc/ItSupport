@@ -14,6 +14,6 @@ public class AuthorizationNewDTO {
     private String note;
 
     public Authorization copyToEntity() {
-        return new Authorization(null, LocalDateTime.now(), null, null, note);
+        return new Authorization(null, LocalDate.now(), note);
     }
 }

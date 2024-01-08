@@ -3,6 +3,7 @@ package br.com.github.davimc.ItSupport.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,27 +16,14 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Authorization {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDateTime createdAt;
+public class Authorization extends AuditableImpl{
     private LocalDateTime answeredAt;
     private Boolean isAccept;
 
     private String note;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Authorization that = (Authorization) o;
-        return id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public Authorization(Long id, LocalDate createdAt, String note) {
+        super(id, createdAt);
+        this.note = note;
     }
 }
