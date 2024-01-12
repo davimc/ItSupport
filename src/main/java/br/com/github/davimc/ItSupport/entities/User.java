@@ -24,7 +24,7 @@ public abstract class User implements Auditable {
     private String name;
     private String email;
     private LocalDate createdAt;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
 
@@ -37,6 +37,7 @@ public abstract class User implements Auditable {
     @ToString.Exclude
     private String password;
 
-
+    // TODO pensar na melhor forma de fazer o endereço
+    private String endereco;
 
 }
