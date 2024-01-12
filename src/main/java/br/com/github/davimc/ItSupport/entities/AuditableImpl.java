@@ -12,15 +12,17 @@ import java.util.Objects;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class AuditableImpl implements Auditable {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private Long id;
+
     private LocalDate createdAt;
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
 
@@ -36,20 +38,8 @@ public abstract class AuditableImpl implements Auditable {
     private List<User> updatedBy;*/
 
     public AuditableImpl(Long id, LocalDate createdAt) {
-        this.id = id;
+
         this.createdAt = createdAt;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        AuditableImpl auditable = (AuditableImpl) o;
-        return getId() != null && Objects.equals(getId(), auditable.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
