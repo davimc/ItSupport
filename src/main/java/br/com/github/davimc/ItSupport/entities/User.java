@@ -39,4 +39,8 @@ public abstract class User implements Auditable {
     // TODO pensar na melhor forma de fazer o endereço
     private String endereco;
 
+    @Transient
+    public String getDiscriminatorValue() {
+        return this.getClass().getAnnotation(DiscriminatorValue.class).value();
+    }
 }
