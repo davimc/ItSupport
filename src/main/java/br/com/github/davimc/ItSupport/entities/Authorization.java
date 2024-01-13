@@ -26,7 +26,7 @@ public class Authorization extends AuditableImpl{
     @JoinColumn(name = "service_id")
     private Service service;
 
-    public Authorization(Long id, LocalDate createdAt, String note) {
+    public Authorization(Long id, LocalDateTime createdAt, String note) {
         super(id, createdAt);
         this.note = note;
     }

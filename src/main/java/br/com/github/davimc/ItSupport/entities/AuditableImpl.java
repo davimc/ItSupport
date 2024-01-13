@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,13 +21,13 @@ public abstract class AuditableImpl implements Auditable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
 
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     @OneToMany
     @JoinColumn(name = "updated_by")
@@ -37,8 +38,8 @@ public abstract class AuditableImpl implements Auditable {
     @ToString.Exclude
     private List<User> updatedBy;*/
 
-    public AuditableImpl(Long id, LocalDate createdAt) {
-
+    public AuditableImpl(Long id, LocalDateTime createdAt) {
+        this.id = id;
         this.createdAt = createdAt;
     }
 

@@ -3,9 +3,8 @@ package br.com.github.davimc.ItSupport.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_users")
@@ -23,12 +22,12 @@ public abstract class User implements Auditable {
 
     private String name;
     private String email;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
 
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     //TODO testar como é a saída disso
     @OneToMany(cascade = CascadeType.ALL)
