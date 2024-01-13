@@ -1,26 +1,21 @@
 package br.com.github.davimc.ItSupport.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class AuditableImpl implements Auditable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     private LocalDateTime createdAt;
 
     @ManyToOne
@@ -29,18 +24,13 @@ public abstract class AuditableImpl implements Auditable {
 
     private LocalDateTime updatedAt;
 
-    @OneToMany
-    @JoinColumn(name = "updated_by")
-    private List<User> updatedBy;
+    @ManyToMany
+    @JoinTable(name = "tb_users_updates",
+    joinColumns = @JoinColumn(name = "update_id"),
+    inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> updatedBy = new ArrayList<>();
 
-    /* TODO ver que porcaria é essa que tá criando a tabela auditable_impl_update
-    @OneToMany(cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private List<User> updatedBy;*/
-
-    public AuditableImpl(Long id, LocalDateTime createdAt) {
-        this.id = id;
+    public AuditableImpl(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-
 }

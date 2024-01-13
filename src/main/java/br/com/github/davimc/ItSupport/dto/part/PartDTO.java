@@ -3,9 +3,11 @@ package br.com.github.davimc.ItSupport.dto.part;
 import br.com.github.davimc.ItSupport.entities.Part;
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 public class PartDTO {
-    private Long id;
+    private UUID id;
     private String name;
     private Double price;
     private Integer quantity;

@@ -5,10 +5,11 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 public class AuthorizationDTO {
-    private Long id;
+    private UUID id;
     private LocalDateTime createdAt;
     private LocalDateTime answeredAt;
     private Boolean isAccept;
@@ -16,7 +17,7 @@ public class AuthorizationDTO {
     public AuthorizationDTO() {
     }
 
-    public AuthorizationDTO(Long id, LocalDateTime createdAt, LocalDateTime answeredAt, Boolean isAccept) {
+    public AuthorizationDTO(UUID id, LocalDateTime createdAt, LocalDateTime answeredAt, Boolean isAccept) {
         this.id = id;
         this.createdAt = createdAt;
         this.answeredAt = answeredAt;

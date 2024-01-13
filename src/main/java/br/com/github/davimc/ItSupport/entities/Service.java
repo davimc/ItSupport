@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_services")
@@ -17,15 +18,16 @@ import java.util.List;
 @AllArgsConstructor
 public class Service extends AuditableImpl{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private User customer;
-
-
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private User employee;
-
     @OneToMany(mappedBy = "service")
     private List<Authorization> authorizations = new ArrayList<>();
 }

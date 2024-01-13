@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_parts")
@@ -14,8 +15,8 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Part {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String name;
     private Double price;
     private Integer quantity;
