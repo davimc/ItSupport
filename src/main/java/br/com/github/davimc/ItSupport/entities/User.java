@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +27,8 @@ public class User {
     //TODO cpf e cnpj
     @Column(unique = true)
     private String cpf;
-
     private String password;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Contact> contacts = new ArrayList<>();
 }
