@@ -1,7 +1,7 @@
 package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.services.ContactService;
-import br.com.github.davimc.ItSupport.services.dto.ContactDTO;
+import br.com.github.davimc.ItSupport.services.dto.contact.ContactDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -2,7 +2,7 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.entities.Contact;
 import br.com.github.davimc.ItSupport.repositories.ContactRepository;
-import br.com.github.davimc.ItSupport.services.dto.ContactDTO;
+import br.com.github.davimc.ItSupport.services.dto.contact.ContactDTO;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
