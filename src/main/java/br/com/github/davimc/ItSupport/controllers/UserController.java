@@ -1,8 +1,8 @@
 package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.services.UserService;
-import br.com.github.davimc.ItSupport.services.dto.user.UserDTO;
-import br.com.github.davimc.ItSupport.services.dto.user.UserShortDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

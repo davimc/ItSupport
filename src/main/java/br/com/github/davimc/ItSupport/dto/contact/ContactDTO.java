@@ -1,4 +1,4 @@
-package br.com.github.davimc.ItSupport.services.dto.contact;
+package br.com.github.davimc.ItSupport.dto.contact;
 
 import br.com.github.davimc.ItSupport.entities.Contact;
 

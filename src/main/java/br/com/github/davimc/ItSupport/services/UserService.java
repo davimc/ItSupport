@@ -2,9 +2,9 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.entities.User;
 import br.com.github.davimc.ItSupport.repositories.UserRepository;
-import br.com.github.davimc.ItSupport.services.dto.contact.ContactDTO;
-import br.com.github.davimc.ItSupport.services.dto.user.UserDTO;
-import br.com.github.davimc.ItSupport.services.dto.user.UserShortDTO;
+import br.com.github.davimc.ItSupport.dto.contact.ContactDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

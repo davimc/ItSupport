@@ -1,4 +1,4 @@
-package br.com.github.davimc.ItSupport.services.dto.user;
+package br.com.github.davimc.ItSupport.dto.user;
 
 import br.com.github.davimc.ItSupport.entities.User;
 
