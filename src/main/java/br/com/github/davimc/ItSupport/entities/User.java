@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +30,20 @@ public class User {
     private String cpf;
     private String password;
 
+    private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private User createdBy;
+
+    private LocalDateTime updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "updated_by")
+    private User updatedBy;
+
+    private String obs;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Contact> contacts = new ArrayList<>();
+
+
 }
