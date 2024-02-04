@@ -23,7 +23,7 @@ public class Part {
     private UUID id;
     private String name;
     private Double price;
-    private Double percentagemSale;
+    private Double percentageSale;
     private Integer quantity;
 
     @ManyToOne
