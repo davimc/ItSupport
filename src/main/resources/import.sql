@@ -8,14 +8,19 @@ INSERT INTO tb_users (id, name, endereco, cpf, password) VALUES ('4cdd3af0-76f5-
 INSERT INTO tb_contacts (id, type, contact, preferential, user_id) VALUES ('d7bd149f-1e3c-403f-9318-b790cc910e0c', 2, '98984121438', true,'4cdd3af0-76f5-4b57-82ac-0a6c65c7045e')
 
 
+INSERT INTO tb_parts (id, name, price, percentagem_Sale, quantity, local_id) VALUES ('d196d1f5-2a52-41b6-8495-870f278df77c', 'FONTE 250W', 40.0, 40, 1,'1d776772-5611-4a0e-b502-d2885dc89d36')
+INSERT INTO tb_parts (id, name, price, percentagem_Sale, quantity, local_id) VALUES ('f47031e5-3cf5-4a55-9ae6-b1b800240c44', 'PLACA MÃE 1155',160.5,30, 2,'6d613899-c0f0-4d8e-801a-b828e61914b4')
+
+
+
 --INSERT INTO tb_audits (id, audit_date, obs, type) VALUES (, '2024-01-14T12:18:00.000Z', )
 -- admin
 
 --INSERT INTO tb_users(id, name, email, password) VALUES (,'davi@suportinf.com', '123456')
 --INSERT INTO tb_audits(id, user_id, auditable_id, type, audit_Date) VALUES (,'4cdd3af0-76f5-4b57-82ac-0a6c65c7045e','d196d1f5-2a52-41b6-8495-870f278df77c',1,'2023-12-19T00:00:00.000Z')
---INSERT INTO tb_users(id, name, email, password) VALUES ('d196d1f5-2a52-41b6-8495-870f278df77c', 'Miguel','miguel@suportinf.com', '123456')
+--INSERT INTO tb_users(id, name, email, password) VALUES (, 'Miguel','miguel@suportinf.com', '123456')
 
---INSERT INTO tb_audits(id, user_id, auditable_id, type, audit_Date) VALUES ('f47031e5-3cf5-4a55-9ae6-b1b800240c44','4cdd3af0-76f5-4b57-82ac-0a6c65c7045e','ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37',1,'2023-12-19T00:00:00.000Z')
+--INSERT INTO tb_audits(id, user_id, auditable_id, type, audit_Date) VALUES (,'4cdd3af0-76f5-4b57-82ac-0a6c65c7045e','ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37',1,'2023-12-19T00:00:00.000Z')
 --INSERT INTO tb_users(id, name, email, password) VALUES ('ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37', 'Murilo','murilo@suportinf.com', '123456')
 -- AUDIT UPDATE
 --INSERT INTO tb_audits(id, user_id, auditable_id, type, audit_Date) VALUES ('1f7a13e9-3d87-4fc2-ba2a-877d414bdbec','4cdd3af0-76f5-4b57-82ac-0a6c65c7045e','ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37',2,'2024-01-01T00:00:00.000Z')
