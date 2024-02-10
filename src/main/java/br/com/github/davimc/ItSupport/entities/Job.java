@@ -28,10 +28,12 @@ public class Job {
     private LocalDateTime finishedAt;
     @Enumerated(EnumType.ORDINAL)
     private JobType type;
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_jobs_devices",
             joinColumns = @JoinColumn(name = "job_id"),
             inverseJoinColumns = @JoinColumn(name = "device_id"))
     private Set<Device> devices = new HashSet<>();
+
     private String obs;
 }
