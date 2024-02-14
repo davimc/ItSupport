@@ -2,6 +2,8 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.task.TaskDTO;
 import br.com.github.davimc.ItSupport.dto.task.TaskNewDTO;
+import br.com.github.davimc.ItSupport.entities.Device;
+import br.com.github.davimc.ItSupport.entities.Job;
 import br.com.github.davimc.ItSupport.entities.Task;
 import br.com.github.davimc.ItSupport.repositories.TaskRepository;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
@@ -38,8 +40,14 @@ public class TaskService {
 
     public TaskDTO create(TaskNewDTO dto){
         Task obj = dto.copyToEntity();
-        obj.setDevice(deviceService.find(dto.getDeviceId()));
-        obj.setJob(jobService.find(dto.getJobId()));
+        Job job = jobService.find(dto.getJobId());
+        Device device = deviceService.find(dto.getDeviceId());
+
+        obj.setJob(job);
+
+        if(job.getDevices().stream().anyMatch(d -> d.equals(device)))
+            obj.setDevice(device);
+        else throw new IllegalArgumentException("Device does not belong to the joblist");
 
         obj = repository.save(obj);
 
