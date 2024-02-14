@@ -29,4 +29,7 @@ public class Part {
     @ManyToOne
     @JoinColumn(name = "local_id")
     private Local local;
+
+    @OneToMany(mappedBy = "part")
+    private Set<TaskPart> taskParts = new HashSet<>();
 }

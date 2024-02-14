@@ -26,6 +26,6 @@ public class PartNewDTO {
     private UUID localId;
 
     public Part copyToEntity() {
-        return new Part(null,name,price,percentageSale,quantity,null);
+        return new Part(null,name,price,percentageSale,quantity,null, null);
     }
 }
