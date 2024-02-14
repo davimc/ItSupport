@@ -14,6 +14,8 @@ import java.util.UUID;
 @Table(name = "tb_tasks_parts")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaskPart {
 
     @Id
