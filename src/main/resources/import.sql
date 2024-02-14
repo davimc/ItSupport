@@ -14,14 +14,18 @@ INSERT INTO tb_parts (id, name, price, percentage_Sale, quantity, local_id) VALU
 INSERT INTO tb_devices (id, created_at, owner_id, type, brand, model, characteristics, obs) VALUES ('ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 1, 'vaio','H303MVE','Branco; rachado no canto esquerdo; marcas de uso','Foi manipulado por outro técnico')
 INSERT INTO tb_devices (id, created_at, owner_id, type, brand, model, characteristics) VALUES ('1f7a13e9-3d87-4fc2-ba2a-877d414bdbec', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 1, 'ACER','ASPIRE5432','Preto; novo; sem marcas de uso')
 
-INSERT INTO tb_jobs(id, created_at, obs, type) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', '2023-12-19T00:00:00.000Z', 'SE POSSÍVEL ENTREGAR EM 4 DIAS',0)
+INSERT INTO tb_jobs(id, created_at, description, type) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', '2023-12-19T00:00:00.000Z', 'SE POSSÍVEL ENTREGAR EM 4 DIAS',0)
 
 
 INSERT INTO tb_jobs_devices (job_id, device_id) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4','ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37')
 INSERT INTO tb_jobs_devices (job_id, device_id) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4','1f7a13e9-3d87-4fc2-ba2a-877d414bdbec')
 
---'4473710b-8f84-4186-8aa1-d94761cc30cd',
---'11daf151-2dc5-4960-8160-e57751b3b97b',
+INSERT INTO tb_tasks (id, created_At, type, job_id, device_id, description) VALUES ('4473710b-8f84-4186-8aa1-d94761cc30cd','2023-12-19T00:00:00.000Z', 1, '534eb9d6-3ad6-4602-b10a-5310471e16b4', 'ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37', 'Manutenção da placa mãe')
+
+INSERT INTO tb_tasks_parts(id, quantity, price, part_id, task_id) VALUES ('11daf151-2dc5-4960-8160-e57751b3b97b', 2, 30, 'd196d1f5-2a52-41b6-8495-870f278df77c','4473710b-8f84-4186-8aa1-d94761cc30cd')
+
+--
+--
 
 --f027448b-3208-4828-b6c5-b3a1970dbb8b
 
