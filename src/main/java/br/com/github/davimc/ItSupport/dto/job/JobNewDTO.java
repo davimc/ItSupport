@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class JobNewDTO {
 
-    private String obs;
+    private String description;
 
     @NotNull(message = "list of devices is required")
     private List<UUID> devicesId;
@@ -24,6 +24,6 @@ public class JobNewDTO {
     @NotNull(message = "type is required")
     private int type;
     public Job copyToEntity(){
-        return  new Job(null, LocalDateTime.now(), null, null, JobType.toEnum(type), null, obs);
+        return  new Job(null, LocalDateTime.now(), null, null, JobType.toEnum(type), null, description);
     }
 }
