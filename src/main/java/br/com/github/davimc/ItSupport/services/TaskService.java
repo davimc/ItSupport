@@ -2,9 +2,13 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.task.TaskDTO;
 import br.com.github.davimc.ItSupport.dto.task.TaskNewDTO;
+import br.com.github.davimc.ItSupport.dto.task.TaskWithTaskPartDTO;
+import br.com.github.davimc.ItSupport.dto.taskPart.TaskPartNewDTO;
 import br.com.github.davimc.ItSupport.entities.Device;
 import br.com.github.davimc.ItSupport.entities.Job;
 import br.com.github.davimc.ItSupport.entities.Task;
+import br.com.github.davimc.ItSupport.entities.TaskPart;
+import br.com.github.davimc.ItSupport.repositories.TaskPartRepository;
 import br.com.github.davimc.ItSupport.repositories.TaskRepository;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +25,10 @@ public class TaskService {
 
     @Autowired
     private DeviceService deviceService;
-
     @Autowired
     private JobService jobService;
+    @Autowired
+    private TaskPartRepository taskPartRepository;
 
     protected Task find(UUID id) {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(id, Task.class));

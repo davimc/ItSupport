@@ -3,7 +3,14 @@ INSERT INTO TB_LOCALS (id, name) VALUES ('b0625424-ad36-40e1-843a-c158b90ae753',
 INSERT INTO TB_LOCALS (id, name) VALUES ('1d776772-5611-4a0e-b502-d2885dc89d36', 'Estante')
 INSERT INTO TB_LOCALS (id, name) VALUES ('6d613899-c0f0-4d8e-801a-b828e61914b4', 'Mostruário')
 
-INSERT INTO tb_users (id, name, endereco, cpf, password) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'Davi', 'Rua dos Prazeres Centro', '60727289365','12345')
+--INSERT INTO tb_users (id, name, address, email, cpf, password) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'Davi', 'Rua dos Prazeres Centro', 'davimatosc@hotmail.com','60727289365','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG')
+INSERT INTO tb_users (id, name, address, email, cpf, password) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'Davi', 'Rua dos Prazeres Centro', 'davimatosc@hotmail.com','60727289365','12345')
+
+INSERT INTO tb_role (id,authority) VALUES ('f027448b-3208-4828-b6c5-b3a1970dbb8b','ROLE_USUARIO');
+INSERT INTO tb_role (id,authority) VALUES ('d103f299-de10-4025-9c30-0c96d334ae21','ROLE_LOJISTA');
+
+INSERT INTO tb_user_role (user_id, role_id) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'd103f299-de10-4025-9c30-0c96d334ae21');
+
 
 INSERT INTO tb_contacts (id, type, contact, preferential, user_id) VALUES ('d7bd149f-1e3c-403f-9318-b790cc910e0c', 2, '98984121438', true,'4cdd3af0-76f5-4b57-82ac-0a6c65c7045e')
 
@@ -27,9 +34,9 @@ INSERT INTO tb_tasks_parts(id, quantity, price, part_id, task_id) VALUES ('11daf
 --
 --
 
---f027448b-3208-4828-b6c5-b3a1970dbb8b
+--
 
---d103f299-de10-4025-9c30-0c96d334ae21
+--
 
 --9a773374-56e1-490d-bba5-ff408d759a34
 

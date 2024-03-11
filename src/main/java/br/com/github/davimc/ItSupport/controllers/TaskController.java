@@ -2,6 +2,10 @@ package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.dto.task.TaskDTO;
 import br.com.github.davimc.ItSupport.dto.task.TaskNewDTO;
+import br.com.github.davimc.ItSupport.dto.task.TaskWithTaskPartDTO;
+import br.com.github.davimc.ItSupport.dto.taskPart.TaskPartNewDTO;
+import br.com.github.davimc.ItSupport.entities.Task;
+import br.com.github.davimc.ItSupport.services.TaskPartService;
 import br.com.github.davimc.ItSupport.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +24,9 @@ public class TaskController {
     @Autowired
     private TaskService service;
 
+    @Autowired
+    private TaskPartService taskPartService;
+
     @GetMapping
     public ResponseEntity<Page<TaskDTO>> findAll(Pageable pageable) {
         return ResponseEntity.ok().body(service.findAll(pageable));
@@ -37,4 +44,16 @@ public class TaskController {
 
         return ResponseEntity.created(uri).body(dto);
     }
+
+    /** TODO analisar como devo fazer essa inserção
+    * criar um controller apenas para um único (create)
+     * manter dessa forma e ver a melhor forma
+     * obs: é um put ou post?
+     *
+     */
+    /*@PostMapping ResponseEntity<TaskWithTaskPartDTO> addPart(@RequestBody TaskPartNewDTO dto) {
+        taskPartService.create(dto);
+
+        return ResponseEntity.accepted().body();
+    }*/
 }
