@@ -18,6 +18,7 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -27,7 +28,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 @EnableWebSecurity
 public class SecurityConfig {
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -53,22 +54,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,"/auth/login/**")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,"/auth/register/**")).permitAll()
-
-                        .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/devices/**")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/persons/**")).permitAll()
-
-                        .requestMatchers(mvcMatcherBuilder.pattern("/jobs/**")).authenticated()
-
-                        .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/notifications/**")).authenticated()
-
-                        .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/transfers")).hasRole("USUARIO")
-
-                        .requestMatchers(mvcMatcherBuilder.pattern("/h2-console/**")).permitAll()
-                        .anyRequest().permitAll()
-                )
+                .authorizeHttpRequests((requests) -> requests.anyRequest().permitAll())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 

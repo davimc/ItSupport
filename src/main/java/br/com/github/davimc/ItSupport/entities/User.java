@@ -24,43 +24,25 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    // TODO tb_addresses
-    private String address;
 
-    //todo email dto e etc
+    @Column(unique = true)
     private String email;
 
-    //TODO cpf e cnpj
-    @Column(unique = true)
-    private String cpf;
     private String password;
-
-    private LocalDateTime createdAt;
-    @ManyToOne
-    @JoinColumn(name = "created_by")
-    private User createdBy;
-
-    private LocalDateTime updatedAt;
-
-    @ManyToOne
-    @JoinColumn(name = "updated_by")
-    private User updatedBy;
-
     private String obs;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Contact> contacts = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name="tb_user_role",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
     private Set<Role> roles = new HashSet<>();
 
 
+    public void addRole(Role role) {
+        roles.add(role);
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority()))
-                .collect(Collectors.toList());
+        return roles;
     }
 
     @Override

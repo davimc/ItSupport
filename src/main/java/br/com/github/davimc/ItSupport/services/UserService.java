@@ -1,7 +1,9 @@
 package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.login.RegisterDTO;
+import br.com.github.davimc.ItSupport.entities.Role;
 import br.com.github.davimc.ItSupport.entities.User;
+import br.com.github.davimc.ItSupport.projections.UserDetailsProjection;
 import br.com.github.davimc.ItSupport.repositories.RoleRepository;
 import br.com.github.davimc.ItSupport.repositories.UserRepository;
 import br.com.github.davimc.ItSupport.dto.contact.ContactDTO;
@@ -18,7 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -39,7 +41,7 @@ public class UserService implements UserDetailsService {
     public UserDTO findById(UUID id) {
         User obj = find(id);
 
-        return new UserDTO(obj, obj.getContacts());
+        return new UserDTO(obj);
     }
     public Page<UserShortDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(UserShortDTO::new);
@@ -52,17 +54,28 @@ public class UserService implements UserDetailsService {
         System.out.println(dto.password());
 
         //TODO alterar quando criar person
-        User user = new User(null, dto.name(), dto.address(), dto.login(), dto.cpf(), passwordEncrypted, LocalDateTime.now(), null, null,null, dto.obs(),null, null);
+        User user = new User(null, dto.name(), dto.login(), passwordEncrypted,dto.obs(),null);
         user.getRoles().addAll(dto.roles().stream().map(roleRepository::findByAuthority).collect(Collectors.toSet()));
         user = repository.save(user);
 
-        return new UserDTO(user, user.getContacts());
+        return new UserDTO(user);
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByEmail(username).orElseThrow(() -> new ObjectNotFoundException(username, User.class));
+        List<UserDetailsProjection> result = repository.searchUserAndRolesByEmail(username);
+        if(result.size() == 0) {
+            throw new ObjectNotFoundException(username, User.class);
+        }
+        User obj = new User();
+        obj.setEmail(username);
+        obj.setPassword(result.get(0).getPassword());
+        for(UserDetailsProjection projection: result) {
+            obj.addRole(new Role(projection.getRoleId(),projection.getAuthority()));
+        }
+
+        return obj;
     }
 
     @Transactional(readOnly = true)
