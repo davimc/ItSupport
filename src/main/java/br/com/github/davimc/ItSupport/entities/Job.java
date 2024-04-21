@@ -35,5 +35,12 @@ public class Job {
             inverseJoinColumns = @JoinColumn(name = "device_id"))
     private Set<Device> devices = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private User client;
+
+    @ManyToOne
+    @JoinColumn(name = "technician_id")
+    private User tech;
     private String description;
 }
