@@ -16,6 +16,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class JobNewDTO {
 
+    private LocalDateTime createdAt;
+
     private String description;
 
     @NotNull(message = "list of devices is required")
