@@ -6,11 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_jobs")
@@ -26,15 +25,9 @@ public class Job {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime finishedAt;
-    @Enumerated(EnumType.ORDINAL)
-    private JobType type;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "tb_jobs_devices",
-            joinColumns = @JoinColumn(name = "job_id"),
-            inverseJoinColumns = @JoinColumn(name = "device_id"))
-    private Set<Device> devices = new HashSet<>();
-
+    @OneToMany(mappedBy = "job")
+    private Set<JobDescription> descriptions = new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
@@ -42,5 +35,4 @@ public class Job {
     @ManyToOne
     @JoinColumn(name = "technician_id")
     private User tech;
-    private String description;
 }
