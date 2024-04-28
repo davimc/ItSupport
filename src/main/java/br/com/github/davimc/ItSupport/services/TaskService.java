@@ -43,7 +43,7 @@ public class TaskService {
         return repository.findAll(pageable).map(TaskDTO::new);
     }
 
-    public TaskDTO create(TaskNewDTO dto){
+  /*  public TaskDTO create(TaskNewDTO dto){
         Task obj = dto.copyToEntity();
         Job job = jobService.find(dto.getJobId());
         Device device = deviceService.find(dto.getDeviceId());
@@ -57,5 +57,5 @@ public class TaskService {
         obj = repository.save(obj);
 
         return new TaskDTO(obj);
-    }
+    }*/
 }

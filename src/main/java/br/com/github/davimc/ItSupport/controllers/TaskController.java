@@ -36,6 +36,7 @@ public class TaskController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
+/*
     @PostMapping
     public ResponseEntity<TaskDTO> create(@RequestBody TaskNewDTO newDto) {
         TaskDTO dto = service.create(newDto);
@@ -44,6 +45,7 @@ public class TaskController {
 
         return ResponseEntity.created(uri).body(dto);
     }
+*/
 
     /** TODO analisar como devo fazer essa inserção
     * criar um controller apenas para um único (create)
