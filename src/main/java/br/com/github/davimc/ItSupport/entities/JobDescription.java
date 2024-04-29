@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_job_description")
+@Table(name = "tb_job_descriptions")
 @Getter
 @Setter
 @NoArgsConstructor
