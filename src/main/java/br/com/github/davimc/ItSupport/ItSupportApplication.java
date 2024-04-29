@@ -17,6 +17,6 @@ public class ItSupportApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(passwordEncoder.matches("123456","$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG"));
+
 	}
 }

@@ -50,8 +50,6 @@ public class UserService implements UserDetailsService {
     public UserDTO insert(RegisterDTO dto) {
         if(findByLogin(dto.login()).isPresent()) throw new IllegalArgumentException(dto.login() + "already registered");
         String passwordEncrypted = encoder.encode(dto.password());
-        System.out.println(passwordEncrypted);
-        System.out.println(dto.password());
 
         //TODO alterar quando criar person
         User user = new User(null, dto.name(), dto.login(), passwordEncrypted,dto.obs(),null);
