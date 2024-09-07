@@ -19,7 +19,8 @@ public class JobController {
 
     @Autowired
     private JobService service;
-
+    //TODO não esquecer de adaptar isso
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public ResponseEntity<Page<JobDTO>> findAll(Pageable pageable) {
         return ResponseEntity.ok().body(service.findAll(pageable));
