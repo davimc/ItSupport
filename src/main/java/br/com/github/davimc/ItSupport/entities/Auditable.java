@@ -1,10 +1,11 @@
 package br.com.github.davimc.ItSupport.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public interface Auditable {
-    LocalDate getCreatedAt();
-    LocalDate getUpdatedAt();
+    LocalDateTime getCreatedAt();
+    LocalDateTime getUpdatedAt();
 
 
 }

@@ -3,7 +3,7 @@ package br.com.github.davimc.ItSupport.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -14,9 +14,9 @@ public class AuditableImpl implements Auditable{
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
+    private final LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     public AuditableImpl() {
-        createdAt = LocalDate.now();
+        createdAt = LocalDateTime.now();
     }
 }
