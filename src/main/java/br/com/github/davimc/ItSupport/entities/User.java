@@ -36,6 +36,9 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name="role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Address> addresses = new ArrayList<>();
+
 
     public void addRole(Role role) {
         roles.add(role);

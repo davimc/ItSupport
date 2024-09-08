@@ -10,20 +10,23 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_contacts")
+@Table(name = "tb_addresses")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Contact {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Enumerated(EnumType.ORDINAL)
-    private ContactType type;
-    private String contact;
 
-    private boolean preferential;
+    private String publicPlace;
+    private String district;
+    private int number;
+    private String complement;
+    private String reference;
+    private String cep;
+    private String branch;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

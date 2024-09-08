@@ -6,7 +6,6 @@ import br.com.github.davimc.ItSupport.entities.User;
 import br.com.github.davimc.ItSupport.projections.UserDetailsProjection;
 import br.com.github.davimc.ItSupport.repositories.RoleRepository;
 import br.com.github.davimc.ItSupport.repositories.UserRepository;
-import br.com.github.davimc.ItSupport.dto.contact.ContactDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
@@ -52,7 +51,8 @@ public class UserService implements UserDetailsService {
         String passwordEncrypted = encoder.encode(dto.password());
 
         //TODO alterar quando criar person
-        User user = new User(null, dto.name(), dto.login(), passwordEncrypted,dto.obs(),null);
+        //TODO alterar address
+        User user = new User(null, dto.name(), dto.login(), passwordEncrypted,dto.obs(),null,null);
         user.getRoles().addAll(dto.roles().stream().map(roleRepository::findByAuthority).collect(Collectors.toSet()));
         user = repository.save(user);
 

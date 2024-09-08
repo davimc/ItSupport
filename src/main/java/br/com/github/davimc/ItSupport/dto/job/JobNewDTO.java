@@ -4,6 +4,7 @@ import br.com.github.davimc.ItSupport.dto.jobDescription.JobDescriptionDTO;
 import br.com.github.davimc.ItSupport.dto.jobDescription.JobDescriptionNewDTO;
 import br.com.github.davimc.ItSupport.entities.Job;
 import br.com.github.davimc.ItSupport.entities.enums.JobType;
+import br.com.github.davimc.ItSupport.entities.enums.StatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class JobNewDTO {
     private UUID techId;
     private List<JobDescriptionNewDTO> descriptions = new ArrayList<>();
     public Job copyToEntity(){
-        return  new Job(null, createdAt, null, null, null, null, null);
+        return  new Job(null,0, StatusEnum.START, createdAt, null, null, null, null, null);
     }
 
 }
