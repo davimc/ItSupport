@@ -9,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Getter
-public class AuditableImpl implements Auditable{
+public abstract class AuditableImpl implements Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
