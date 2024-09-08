@@ -19,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -52,7 +53,7 @@ public class UserService implements UserDetailsService {
 
         //TODO alterar quando criar person
         //TODO alterar address
-        User user = new User(null, dto.name(), dto.login(), passwordEncrypted,dto.obs(),null,null);
+        User user = new User(dto.name(), dto.login(), passwordEncrypted,dto.obs(), LocalDate.now(),null,null);
         user.getRoles().addAll(dto.roles().stream().map(roleRepository::findByAuthority).collect(Collectors.toSet()));
         user = repository.save(user);
 

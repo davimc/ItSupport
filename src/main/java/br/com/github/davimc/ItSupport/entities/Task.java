@@ -18,26 +18,19 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class Task extends AuditableImpl{
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     private LocalDateTime finishedAt;
     @Enumerated(EnumType.ORDINAL)
     private TaskType type;
-
     @ManyToOne
     @JoinColumn(name = "job_id")
     private Job job;
     @ManyToOne
     @JoinColumn(name = "device_id")
     private Device device;
-
     @OneToMany(mappedBy = "task")
     private Set<TaskPart> taskParts = new HashSet<>();
-
     private String description;
+    private Double amount;
 }

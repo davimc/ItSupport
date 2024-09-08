@@ -23,6 +23,6 @@ public class TaskNewDTO {
 
 
     public Task copyToEntity(){
-        return new Task(null, LocalDateTime.now(), null, null, TaskType.toEnum(type), null, null, null, description);
+        return new Task(LocalDateTime.now(),TaskType.toEnum(type), null, null, null, "", 0.0);
     }
 }

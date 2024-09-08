@@ -18,26 +18,35 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Job {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class Job extends AuditableImpl{
 
-    private int os;
+    private Integer os;
     @Enumerated(EnumType.ORDINAL)
     private StatusEnum status;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @Enumerated(EnumType.ORDINAL)
+    private JobType type;
     private LocalDateTime finishedAt;
 
-    @OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
-    private Set<JobDescription> descriptions = new HashSet<>();
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
+    @ManyToMany
+    @JoinTable(name = "tb_jobs_devices",
+            joinColumns = @JoinColumn(name= "job_id"),
+            inverseJoinColumns = @JoinColumn(name = "device_id"))
+    private Set<Device> devices = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "technician_id")
     private User tech;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Job job = (Job) o;
+        return getId() == job.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
 }

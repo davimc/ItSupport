@@ -6,12 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_users")
@@ -19,10 +17,8 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class User extends AuditableImpl implements UserDetails  {
+
     private String name;
 
     @Column(unique = true)
@@ -30,6 +26,8 @@ public class User implements UserDetails {
 
     private String password;
     private String obs;
+    private LocalDate birthdate;
+
     @ManyToMany
     @JoinTable(name="tb_user_role",
             joinColumns = @JoinColumn(name="user_id"),
@@ -77,11 +75,11 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id);
+        return getId().equals(user.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }

@@ -18,17 +18,13 @@ INSERT INTO tb_role (id,authority) VALUES ('d103f299-de10-4025-9c30-0c96d334ae21
 INSERT INTO tb_user_role (user_id, role_id) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'd103f299-de10-4025-9c30-0c96d334ae21');
 INSERT INTO tb_user_role (user_id, role_id) VALUES ('9a773374-56e1-490d-bba5-ff408d759a34', 'f027448b-3208-4828-b6c5-b3a1970dbb8b');
 
-
-INSERT INTO tb_contacts (id, type, contact, preferential, user_id) VALUES ('d7bd149f-1e3c-403f-9318-b790cc910e0c', 2, '98984121438', true,'4cdd3af0-76f5-4b57-82ac-0a6c65c7045e')
-
-
 INSERT INTO tb_parts (id, name, price, percentage_Sale, quantity, local_id) VALUES ('d196d1f5-2a52-41b6-8495-870f278df77c', 'FONTE 250W', 40.0, 0.4, 1,'1d776772-5611-4a0e-b502-d2885dc89d36')
 INSERT INTO tb_parts (id, name, price, percentage_Sale, quantity, local_id) VALUES ('f47031e5-3cf5-4a55-9ae6-b1b800240c44', 'PLACA MÃE 1155',160.5,0.3, 2,'6d613899-c0f0-4d8e-801a-b828e61914b4')
 
 INSERT INTO tb_devices (id, created_at, owner_id, type, brand, model, characteristics, obs) VALUES ('ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 1, 'vaio','H303MVE','Branco; rachado no canto esquerdo; marcas de uso','Foi manipulado por outro técnico')
 INSERT INTO tb_devices (id, created_at, owner_id, type, brand, model, characteristics) VALUES ('1f7a13e9-3d87-4fc2-ba2a-877d414bdbec', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 1, 'ACER','ASPIRE5432','Preto; novo; sem marcas de uso')
 
-INSERT INTO tb_jobs(id, created_at, client_id, technician_id) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e','9a773374-56e1-490d-bba5-ff408d759a34')
+INSERT INTO tb_jobs(id, created_at, technician_id,os) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e',1)
 
 INSERT INTO tb_job_descriptions (id, device_id, job_id, type, description) VALUES ('e9e1558d-58a5-4162-97b5-acd399fd9f89','ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37','534eb9d6-3ad6-4602-b10a-5310471e16b4',1,'Pediu urgencia')
 
@@ -36,7 +32,7 @@ INSERT INTO tb_job_descriptions (id, device_id, job_id, type, description) VALUE
 INSERT INTO tb_jobs_devices (job_id, device_id) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4','ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37')
 INSERT INTO tb_jobs_devices (job_id, device_id) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4','1f7a13e9-3d87-4fc2-ba2a-877d414bdbec')
 
-INSERT INTO tb_tasks (id, created_At, type, job_id, device_id, description) VALUES ('4473710b-8f84-4186-8aa1-d94761cc30cd','2023-12-19T00:00:00.000Z', 1, '534eb9d6-3ad6-4602-b10a-5310471e16b4', 'ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37', 'Manutenção da placa mãe')
+INSERT INTO tb_tasks (id, created_At, type, job_id, device_id, description, amount) VALUES ('4473710b-8f84-4186-8aa1-d94761cc30cd','2023-12-19T00:00:00.000Z', 1, '534eb9d6-3ad6-4602-b10a-5310471e16b4', 'ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37', 'Manutenção da placa mãe', 80.0)
 
 INSERT INTO tb_tasks_parts(id, quantity, price, part_id, task_id) VALUES ('11daf151-2dc5-4960-8160-e57751b3b97b', 2, 30, 'd196d1f5-2a52-41b6-8495-870f278df77c','4473710b-8f84-4186-8aa1-d94761cc30cd')
 

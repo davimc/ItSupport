@@ -1,6 +1,7 @@
 package br.com.github.davimc.ItSupport.dto.device;
 
 import br.com.github.davimc.ItSupport.entities.Device;
+import br.com.github.davimc.ItSupport.entities.User;
 import br.com.github.davimc.ItSupport.entities.enums.DeviceType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,6 @@ public class DeviceNewDTO {
     @NotNull(message = "type is required")
     private int type;
     public Device copyToEntity(){
-        return  new Device(null, LocalDateTime.now(), null, DeviceType.toEnum(type),brand, model, characteristics, obs, null);
+        return  new Device( DeviceType.toEnum(type), brand, model, characteristics, obs, new User());
     }
 }
