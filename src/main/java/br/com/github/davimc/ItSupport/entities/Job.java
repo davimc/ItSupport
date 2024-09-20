@@ -27,7 +27,7 @@ public class Job extends AuditableImpl{
     private JobType type;
     private LocalDateTime finishedAt;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_jobs_devices",
             joinColumns = @JoinColumn(name= "job_id"),
             inverseJoinColumns = @JoinColumn(name = "device_id"))
