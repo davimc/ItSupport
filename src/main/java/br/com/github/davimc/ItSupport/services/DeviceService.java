@@ -37,11 +37,12 @@ public class DeviceService {
     protected Set<Device> findAll(List<UUID> devicesId) {
         return devicesId.stream().map(this::find).collect(Collectors.toSet());
     }
+
     public Page<DeviceDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(DeviceDTO::new);
     }
 
-    public DeviceDTO create(DeviceNewDTO dto){
+    public DeviceDTO create(DeviceNewDTO dto) {
         Device obj = dto.copyToEntity();
         User u = userService.find(dto.getOwnerId());
         obj.setUser(u);
@@ -49,4 +50,11 @@ public class DeviceService {
 
         return new DeviceDTO(obj);
     }
+
+    /*public DeviceDTO update(UUID id, DeviceUpdateDto dto) {
+        Device obj = find(id);
+        obj.setUpdateAt();
+
+        return updatedDto;
+    }*/
 }

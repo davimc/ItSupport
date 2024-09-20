@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,8 +16,15 @@ public abstract class AuditableImpl implements Auditable{
     private UUID id;
 
     private final LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
     public AuditableImpl() {
         createdAt = LocalDateTime.now();
+    }
+
+    @Override
+    public void setUpdateAt() {
+        this.updatedAt = LocalDateTime.now();
+
     }
 }

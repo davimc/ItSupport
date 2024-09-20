@@ -6,6 +6,6 @@ import java.time.LocalDateTime;
 public interface Auditable {
     LocalDateTime getCreatedAt();
     LocalDateTime getUpdatedAt();
-
+    void setUpdateAt();
 
 }
