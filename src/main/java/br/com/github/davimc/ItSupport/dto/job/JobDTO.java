@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public record JobDTO(UUID id, int os, String clientName, String status, String tech, String type, String tec, LocalDateTime createdAt, LocalDateTime finishedAt)
+public record JobDTO(UUID id, int os, String clientName, String status, String type, String tech, LocalDateTime createdAt, LocalDateTime finishedAt)
 {
     public JobDTO(Job obj){
         this(obj.getId(), obj.getOs(),
                 obj.getDevices().stream().findAny().get().getUser().getName(),
-                obj.getStatus().getDesc(), obj.getTech().getName(),
+                obj.getStatus().getDesc(),
                 obj.getType().getDesc(), obj.getTech().getName(),
                 obj.getCreatedAt(), obj.getFinishedAt());
     }

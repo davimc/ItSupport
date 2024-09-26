@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.job.JobDTO;
 import br.com.github.davimc.ItSupport.dto.job.JobNewDTO;
+import br.com.github.davimc.ItSupport.dto.job.JobTotalDTO;
 import br.com.github.davimc.ItSupport.entities.Device;
 import br.com.github.davimc.ItSupport.entities.Job;
 import br.com.github.davimc.ItSupport.repositories.JobRepository;
@@ -35,8 +36,9 @@ public class JobService {
 
         return new JobDTO(obj);
     }
-    public Page<JobDTO> findAll(Pageable pageable) {
-        return repository.findAll(pageable).map(JobDTO::new);
+    public Page<JobTotalDTO> findAll(Pageable pageable) {
+
+        return repository.findAllJobView(pageable).map(JobTotalDTO::new);
     }
 
     //todo projection client, tecníco e dispositivos
