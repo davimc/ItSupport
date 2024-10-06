@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.dto.job.JobDTO;
 import br.com.github.davimc.ItSupport.dto.job.JobNewDTO;
+import br.com.github.davimc.ItSupport.dto.job.JobTotalDTO;
 import br.com.github.davimc.ItSupport.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ public class JobController {
     //TODO não esquecer de adaptar isso
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
-    public ResponseEntity<Page<JobDTO>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<JobTotalDTO>> findAll(Pageable pageable) {
         return ResponseEntity.ok().body(service.findAll(pageable));
     }
     @GetMapping("/{id}")

@@ -2,7 +2,6 @@ package br.com.github.davimc.ItSupport.dto.job;
 
 import br.com.github.davimc.ItSupport.entities.Job;
 import br.com.github.davimc.ItSupport.entities.enums.JobType;
-import br.com.github.davimc.ItSupport.entities.enums.StatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +28,7 @@ public class JobNewDTO {
     private UUID techId;
     public Job copyToEntity(){
         //TODO ajeitar
-        return  new Job(0, StatusEnum.START, JobType.COMMON, null, null, null);
+        return  new Job(1, JobType.COMMON, LocalDateTime.now(), null, null);
     }
 
 }

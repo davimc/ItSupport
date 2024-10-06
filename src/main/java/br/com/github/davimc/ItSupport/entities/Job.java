@@ -1,13 +1,11 @@
 package br.com.github.davimc.ItSupport.entities;
 
 import br.com.github.davimc.ItSupport.entities.enums.JobType;
-import br.com.github.davimc.ItSupport.entities.enums.StatusEnum;
+import br.com.github.davimc.ItSupport.entities.enums.JobStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.repository.cdi.Eager;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -17,12 +15,11 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Job extends AuditableImpl{
 
     private Integer os;
     @Enumerated(EnumType.ORDINAL)
-    private StatusEnum status;
+    private JobStatus status;
     @Enumerated(EnumType.ORDINAL)
     private JobType type;
     private LocalDateTime finishedAt;
@@ -36,6 +33,17 @@ public class Job extends AuditableImpl{
     @ManyToOne
     @JoinColumn(name = "technician_id")
     private User tech;
+
+    @OneToMany(mappedBy = "job")
+    private List<Task> tasks = new ArrayList<>();
+
+    public Job(Integer os, JobType type, LocalDateTime finishedAt, User tech, Set<Device> device) {
+        this.os = os;
+        this.status = JobStatus.STARTED;
+        this.type = type;
+        this.finishedAt = finishedAt;
+        this.tech = tech;
+    }
 
     @Override
     public boolean equals(Object o) {
