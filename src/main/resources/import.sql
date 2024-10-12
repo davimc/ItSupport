@@ -5,8 +5,8 @@ INSERT INTO TB_LOCALS (id, name) VALUES ('6d613899-c0f0-4d8e-801a-b828e61914b4',
 
 
 
-INSERT INTO tb_users (id, name, email, password ) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'Davi', 'davimatosc@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG')
-INSERT INTO tb_users (id, name, email, password) VALUES ('9a773374-56e1-490d-bba5-ff408d759a34', 'Miguel', 'miguel@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG')
+INSERT INTO tb_users (id, name, email, password ) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'Davi Matos de Carvalho', 'davimatosc@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG')
+INSERT INTO tb_users (id, name, email, password) VALUES ('9a773374-56e1-490d-bba5-ff408d759a34', 'Miguel Gandra Martins', 'miguel@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG')
 --INSERT INTO tb_users (id, name, address, email, cpf, password) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'Davi', 'Rua dos Prazeres Centro', 'davimatosc@hotmail.com','60727289365','12345')
 
 INSERT INTO TB_ADDRESSES (id,public_Place,district,number,complement,reference,cep,branch, user_id) VALUES ('160a45ec-8362-4aa9-9e60-238f50ecd668', 'Rua dos Prazeres', 'Centro', 537, '','','65023-210', '','4cdd3af0-76f5-4b57-82ac-0a6c65c7045e')
@@ -24,7 +24,7 @@ INSERT INTO tb_parts (id, name, price, percentage_Sale, quantity, local_id) VALU
 INSERT INTO tb_devices (id, created_at, owner_id, type, brand, model, characteristics, obs) VALUES ('ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 1, 'vaio','H303MVE','Branco; rachado no canto esquerdo; marcas de uso','Foi manipulado por outro técnico')
 INSERT INTO tb_devices (id, created_at, owner_id, type, brand, model, characteristics) VALUES ('1f7a13e9-3d87-4fc2-ba2a-877d414bdbec', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 1, 'ACER','ASPIRE5432','Preto; novo; sem marcas de uso')
 
-    INSERT INTO tb_jobs(id, created_at, technician_id,os, type, status) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', '2023-12-19T00:00:00.000Z', '4cdd3af0-76f5-4b57-82ac-0a6c65c7045e',1,2,1)
+    INSERT INTO tb_jobs(id, created_at, technician_id,os, type, status) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', '2023-12-19T00:00:00.000Z', '9a773374-56e1-490d-bba5-ff408d759a34',1,2,1)
 
 INSERT INTO tb_jobs_devices (job_id, device_id) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', 'ec1bdcad-0ccd-4d8c-9b64-d157cb7abf37')
 INSERT INTO tb_jobs_devices (job_id, device_id) VALUES ('534eb9d6-3ad6-4602-b10a-5310471e16b4', '1f7a13e9-3d87-4fc2-ba2a-877d414bdbec')
