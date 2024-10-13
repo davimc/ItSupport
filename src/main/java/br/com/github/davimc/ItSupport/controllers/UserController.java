@@ -29,4 +29,8 @@ public class UserController {
     public ResponseEntity<UserDTO> findId(@PathVariable UUID id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
+    @GetMapping("/costumers")
+    public ResponseEntity<Page<UserDTO>> findCostumers(Pageable pageable) {
+        return ResponseEntity.ok().body(service.findByAuthority(pageable,"ROLE_COSTUMER"));
+    }
 }

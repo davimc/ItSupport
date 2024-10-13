@@ -47,6 +47,10 @@ public class UserService implements UserDetailsService {
         return repository.findAll(pageable).map(UserShortDTO::new);
     }
 
+    public Page<UserDTO> findByAuthority(Pageable pageable,String authority) {
+        return repository.findUsersByRoleAuthority(pageable,authority).map(UserDTO::new);
+    }
+
     public UserDTO insert(RegisterDTO dto) {
         if(findByLogin(dto.login()).isPresent()) throw new IllegalArgumentException(dto.login() + "already registered");
         String passwordEncrypted = encoder.encode(dto.password());

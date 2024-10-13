@@ -2,6 +2,8 @@ package br.com.github.davimc.ItSupport.repositories;
 
 import br.com.github.davimc.ItSupport.entities.User;
 import br.com.github.davimc.ItSupport.projections.UserDetailsProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,4 +27,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
             """)
     List<UserDetailsProjection> searchUserAndRolesByEmail(String email);
 
+    @Query("SELECT u FROM User u " +
+            "LEFT JOIN u.roles r " +
+            "WHERE r.authority = :authority")
+    Page<User> findUsersByRoleAuthority(Pageable pageable, String authority);
 }
