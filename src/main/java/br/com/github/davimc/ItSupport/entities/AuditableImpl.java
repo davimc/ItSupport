@@ -27,4 +27,8 @@ public abstract class AuditableImpl implements Auditable{
         this.updatedAt = LocalDateTime.now();
 
     }
+
+    public AuditableImpl(LocalDateTime createdAt) {
+        this.createdAt = createdAt != null? createdAt : LocalDateTime.now();
+    }
 }
