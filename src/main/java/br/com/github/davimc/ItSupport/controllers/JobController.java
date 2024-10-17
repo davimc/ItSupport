@@ -30,12 +30,12 @@ public class JobController {
     public ResponseEntity<JobDTO> findId(@PathVariable UUID id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
-
+// ToDo Resolve vulnerability issue in URI redirection
     @PostMapping
-    public ResponseEntity<JobDTO> create(@RequestBody JobNewDTO newDto) {
+    public ResponseEntity<JobDTO> insert(@RequestBody JobNewDTO newDto) {
         JobDTO dto = service.create(newDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(dto.id()).toUri();
+                .build(dto.id());
 
         return ResponseEntity.created(uri).body(dto);
     }

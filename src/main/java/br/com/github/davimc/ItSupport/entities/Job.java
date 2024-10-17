@@ -37,11 +37,11 @@ public class Job extends AuditableImpl{
     @OneToMany(mappedBy = "job")
     private List<Task> tasks = new ArrayList<>();
 
-    public Job(Integer os, JobType type, LocalDateTime finishedAt, User tech, Set<Device> device) {
+    public Job(Integer os, JobType type, LocalDateTime started, User tech, Set<Device> device) {
+        super(started);
         this.os = os;
         this.status = JobStatus.STARTED;
         this.type = type;
-        this.finishedAt = finishedAt;
         this.tech = tech;
     }
 

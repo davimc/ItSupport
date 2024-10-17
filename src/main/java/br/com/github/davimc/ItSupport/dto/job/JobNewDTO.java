@@ -21,14 +21,19 @@ public class JobNewDTO {
     @PastOrPresent(message = "Data de criação não pode ser no futuro")
     private LocalDateTime createdAt;
 
-    @NotNull(message = "É necessário informar o dispositivo para criar um serviço")
+    @NotNull(message = "É necessário informar ao menso um dispositivo para criar o serviço")
     private List<UUID> deviceId = new ArrayList<>();
 
     @NotNull(message = "É necessário indicar o técnico do serviço")
     private UUID techId;
+
+    @NotNull(message = "É necessário informar um tipo de serviço")
+    private int jobType;
+
+
     public Job copyToEntity(){
-        //TODO ajeitar
-        return  new Job(1, JobType.COMMON, LocalDateTime.now(), null, null);
+        //TODO como pegar a nova OS para o novo serviço sem precisar acessar o BD?
+        return  new Job(1, JobType.toEnum(jobType), null, null, null);
     }
 
 }
