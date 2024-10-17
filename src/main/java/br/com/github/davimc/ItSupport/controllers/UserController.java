@@ -30,7 +30,11 @@ public class UserController {
         return ResponseEntity.ok().body(service.findById(id));
     }
     @GetMapping("/costumers")
-    public ResponseEntity<Page<UserDTO>> findCostumers(Pageable pageable) {
-        return ResponseEntity.ok().body(service.findByAuthority(pageable,"ROLE_COSTUMER"));
+    public ResponseEntity<Page<UserShortDTO>> findCostumers(Pageable pageable) {
+        return ResponseEntity.ok().body(service.findByAuthorityCostumer(pageable));
+    }
+    @GetMapping("/technicians")
+    public ResponseEntity<Page<UserShortDTO>> findTech(Pageable pageable) {
+        return ResponseEntity.ok().body(service.findByAuthorityTechnician(pageable));
     }
 }

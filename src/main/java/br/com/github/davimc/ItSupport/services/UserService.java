@@ -47,8 +47,14 @@ public class UserService implements UserDetailsService {
         return repository.findAll(pageable).map(UserShortDTO::new);
     }
 
-    public Page<UserDTO> findByAuthority(Pageable pageable,String authority) {
-        return repository.findUsersByRoleAuthority(pageable,authority).map(UserDTO::new);
+    private Page<User> findByAuthority(Pageable pageable,String authority) {
+        return repository.findUsersByRoleAuthority(pageable,authority);
+    }
+    public Page<UserShortDTO> findByAuthorityCostumer(Pageable pageable) {
+        return findByAuthority(pageable,"ROLE_COSTUMER").map(UserShortDTO::new);
+    }
+    public Page<UserShortDTO> findByAuthorityTechnician(Pageable pageable) {
+        return findByAuthority(pageable,"ROLE_TECHNICIAN").map(UserShortDTO::new);
     }
 
     public UserDTO insert(RegisterDTO dto) {
