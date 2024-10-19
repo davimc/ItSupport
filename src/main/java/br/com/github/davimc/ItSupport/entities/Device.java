@@ -30,7 +30,7 @@ public class Device extends AuditableImpl {
     private String obs;
 
     @NonNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private User user;
 
