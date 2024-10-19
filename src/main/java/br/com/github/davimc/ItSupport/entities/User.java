@@ -28,7 +28,8 @@ public class User extends AuditableImpl implements UserDetails  {
     private String obs;
     private LocalDate birthdate;
 
-    @ManyToMany
+    // TODO verificar se há necessidade de criar um dto para puxar o role ou utilizar Eager é satisfatório
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="tb_user_role",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
