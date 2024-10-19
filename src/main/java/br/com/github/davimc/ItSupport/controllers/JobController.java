@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.UUID;
 
@@ -31,8 +32,9 @@ public class JobController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 // ToDo Resolve vulnerability issue in URI redirection
+    // TODO Issue ele não está validando a lista de dispositivos(devicesId) quando vai vazia.
     @PostMapping
-    public ResponseEntity<JobDTO> insert(@RequestBody JobNewDTO newDto) {
+    public ResponseEntity<JobDTO> insert(@RequestBody @Valid JobNewDTO newDto) {
         JobDTO dto = service.create(newDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .build(dto.id());

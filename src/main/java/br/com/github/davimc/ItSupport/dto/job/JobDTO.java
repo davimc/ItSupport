@@ -11,7 +11,7 @@ public record JobDTO(UUID id, int os, String clientName, String status, String t
 {
     public JobDTO(Job obj){
         this(obj.getId(), obj.getOs(),
-                obj.getDevices().stream().findAny().get().getUser().getName(),
+                obj.getDevices().stream().findFirst().get().getUser().getName(),
                 obj.getStatus().getDesc(),
                 obj.getType().getDesc(), obj.getTech().getName(),
                 obj.getCreatedAt(), obj.getFinishedAt());
