@@ -37,6 +37,12 @@ public class UserService implements UserDetailsService {
     protected User find(UUID id) {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(id, User.class));
     }
+    protected User findTech(UUID id) {
+        User tech = find(id);
+        if(tech.getRoles().stream().anyMatch(u-> u.getAuthority().equals("ROLE_TECHNICIAN")))
+            return tech;
+        throw new IllegalArgumentException("Este usuário não possui acesso de técnico");
+    }
 
     public UserDTO findById(UUID id) {
         User obj = find(id);
