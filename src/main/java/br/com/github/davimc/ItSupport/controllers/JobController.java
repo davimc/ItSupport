@@ -3,6 +3,7 @@ package br.com.github.davimc.ItSupport.controllers;
 import br.com.github.davimc.ItSupport.dto.job.JobDTO;
 import br.com.github.davimc.ItSupport.dto.job.JobNewDTO;
 import br.com.github.davimc.ItSupport.dto.job.JobTotalDTO;
+import br.com.github.davimc.ItSupport.dto.job.JobUpdateDTO;
 import br.com.github.davimc.ItSupport.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,7 +33,7 @@ public class JobController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 // ToDo Resolve vulnerability issue in URI redirection
-    // TODO Issue ele não está validando a lista de dispositivos(devicesId) quando vai vazia.
+    // TODO Issue validation não está funcionando, até o techId retorna um erro, no entanto não é o erro que deveria
     @PostMapping
     public ResponseEntity<JobDTO> insert(@RequestBody @Valid JobNewDTO newDto) {
         JobDTO dto = service.create(newDto);
@@ -40,5 +41,11 @@ public class JobController {
                 .build(dto.id());
 
         return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<JobDTO> update(@PathVariable UUID id, @RequestBody @Valid JobUpdateDTO updateDTO) {
+        return ResponseEntity.accepted().body(service.update(id, updateDTO));
+
     }
 }

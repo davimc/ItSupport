@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -18,10 +17,9 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobNewDTO {
+public class JobUpdateDTO {
 
-    @PastOrPresent(message = "Data de criação não pode ser no futuro")
-    private LocalDateTime createdAt;
+    private LocalDateTime finishedAt;
 
     @NotEmpty(message = "É necessário informar ao menos um dispositivo para criar o serviço")
     private List<UUID> devicesId = new ArrayList<>();
@@ -33,9 +31,9 @@ public class JobNewDTO {
     private int jobType;
 
 
-    public Job copyToEntity(){
-        //TODO como pegar a nova OS para o novo serviço sem precisar acessar o BD?
-        return  new Job(1, JobType.toEnum(jobType), createdAt, null, null);
+    public Job copyToEntity(Job job){
+        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }
