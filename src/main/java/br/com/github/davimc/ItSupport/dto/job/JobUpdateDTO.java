@@ -1,6 +1,7 @@
 package br.com.github.davimc.ItSupport.dto.job;
 
 import br.com.github.davimc.ItSupport.entities.Job;
+import br.com.github.davimc.ItSupport.entities.enums.JobStatus;
 import br.com.github.davimc.ItSupport.entities.enums.JobType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,18 +22,22 @@ public class JobUpdateDTO {
 
     private LocalDateTime finishedAt;
 
-    @NotEmpty(message = "É necessário informar ao menos um dispositivo para criar o serviço")
     private List<UUID> devicesId = new ArrayList<>();
 
-    @NotNull(message = "É necessário indicar o técnico do serviço")
     private UUID techId;
 
-    @NotNull(message = "É necessário informar um tipo de serviço")
     private int jobType;
+
+    private int jobStatus;
+
 
 
     public Job copyToEntity(Job job){
         //TODO
+        job.setFinishedAt(getFinishedAt());
+        job.setStatus(JobStatus.toEnum(getJobStatus()));
+        job.setType(JobType.toEnum(getJobType()));
+
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

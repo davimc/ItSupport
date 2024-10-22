@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum JobStatus {
     STARTED(1, "Iniciado"), WAITING(2, "Aguardando"),
-    APPROVED(3, "Aprovado"),ENDED(4, "Finalizado");
+    APPROVED(3, "Aprovado"),ENDED(4, "Finalizado"),
+    RETURNED(5, "Retornado");
 
     private final int cod;
     private final String desc;

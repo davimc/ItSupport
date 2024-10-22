@@ -6,6 +6,7 @@ import br.com.github.davimc.ItSupport.entities.enums.JobType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobDetailsDTO {
