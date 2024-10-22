@@ -15,7 +15,7 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Job extends AuditableImpl{
+public class Job extends AuditableImpl {
 
     private Integer os;
     @Enumerated(EnumType.ORDINAL)
@@ -26,7 +26,7 @@ public class Job extends AuditableImpl{
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_jobs_devices",
-            joinColumns = @JoinColumn(name= "job_id"),
+            joinColumns = @JoinColumn(name = "job_id"),
             inverseJoinColumns = @JoinColumn(name = "device_id"))
     private Set<Device> devices = new HashSet<>();
 
