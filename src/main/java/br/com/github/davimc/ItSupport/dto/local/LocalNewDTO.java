@@ -1,11 +1,10 @@
 package br.com.github.davimc.ItSupport.dto.local;
 
 import br.com.github.davimc.ItSupport.entities.Local;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor

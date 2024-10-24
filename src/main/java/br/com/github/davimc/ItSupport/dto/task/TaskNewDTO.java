@@ -1,13 +1,11 @@
 package br.com.github.davimc.ItSupport.dto.task;
 
-import br.com.github.davimc.ItSupport.entities.Local;
 import br.com.github.davimc.ItSupport.entities.Task;
 import br.com.github.davimc.ItSupport.entities.enums.TaskType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

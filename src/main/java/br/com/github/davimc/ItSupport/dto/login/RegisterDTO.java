@@ -1,7 +1,9 @@
 package br.com.github.davimc.ItSupport.dto.login;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
+
 import java.util.List;
 
 public record RegisterDTO(@NotNull(message = "Login is required") @Email(message = "Incorrect format")

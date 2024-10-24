@@ -3,6 +3,7 @@ package br.com.github.davimc.ItSupport.controllers;
 import br.com.github.davimc.ItSupport.dto.job.*;
 import br.com.github.davimc.ItSupport.repositories.JobRepository;
 import br.com.github.davimc.ItSupport.services.JobService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
+
 import java.net.URI;
 import java.util.UUID;
 

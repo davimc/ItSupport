@@ -7,6 +7,7 @@ import br.com.github.davimc.ItSupport.dto.user.UserDTO;
 import br.com.github.davimc.ItSupport.entities.User;
 import br.com.github.davimc.ItSupport.services.TokenService;
 import br.com.github.davimc.ItSupport.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
+
 import java.net.URI;
 
 @RestController
