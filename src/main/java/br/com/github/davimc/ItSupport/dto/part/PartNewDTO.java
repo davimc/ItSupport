@@ -1,11 +1,11 @@
 package br.com.github.davimc.ItSupport.dto.part;
 
 import br.com.github.davimc.ItSupport.entities.Part;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Getter
