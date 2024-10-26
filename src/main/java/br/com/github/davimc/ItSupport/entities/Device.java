@@ -22,6 +22,7 @@ public class Device extends AuditableImpl {
     private DeviceType type;
     @NonNull
     private String brand;
+    private String serial;
     @NonNull
     private String model;
     @NonNull
