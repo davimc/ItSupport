@@ -41,7 +41,7 @@ public class LocalController {
         return ResponseEntity.created(uri).body(dto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<LocalDTO> update(@PathVariable UUID id, @RequestBody @Valid LocalUpdateDTO dto) {
         return ResponseEntity.accepted().body(service.udpate(id, dto));
     }
