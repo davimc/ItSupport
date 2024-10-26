@@ -2,8 +2,8 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.part.PartDTO;
 import br.com.github.davimc.ItSupport.dto.part.PartNewDTO;
+import br.com.github.davimc.ItSupport.dto.part.PartUpdateDTO;
 import br.com.github.davimc.ItSupport.entities.Part;
-import br.com.github.davimc.ItSupport.repositories.LocalRepository;
 import br.com.github.davimc.ItSupport.repositories.PartRepository;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +36,17 @@ public class PartService {
     public PartDTO create(PartNewDTO newDTO){
         Part obj = newDTO.copyToEntity();
         obj.setLocal(localService.find(newDTO.getLocalId()));
+
+        obj = repository.save(obj);
+        return new PartDTO(obj);
+    }
+
+    public PartDTO update (UUID id, PartUpdateDTO dto) {
+        Part obj = find(id);
+
+        obj = dto.fromEntity(obj);
+        if(dto.getLocalId() != null)
+            obj.setLocal(localService.find(dto.getLocalId()));
 
         obj = repository.save(obj);
         return new PartDTO(obj);

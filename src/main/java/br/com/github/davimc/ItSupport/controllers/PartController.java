@@ -2,7 +2,9 @@ package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.dto.part.PartDTO;
 import br.com.github.davimc.ItSupport.dto.part.PartNewDTO;
+import br.com.github.davimc.ItSupport.dto.part.PartUpdateDTO;
 import br.com.github.davimc.ItSupport.services.PartService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,5 +38,10 @@ public class PartController {
                 .buildAndExpand(dto.id()).toUri();
 
         return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PartDTO> update(@PathVariable UUID id, @Valid @RequestBody  PartUpdateDTO updateDTO) {
+        return ResponseEntity.accepted().body(service.update(id, updateDTO));
     }
 }
