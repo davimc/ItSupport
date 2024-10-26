@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.local.LocalNewDTO;
 import br.com.github.davimc.ItSupport.dto.local.LocalDTO;
+import br.com.github.davimc.ItSupport.dto.local.LocalUpdateDTO;
 import br.com.github.davimc.ItSupport.entities.Local;
 import br.com.github.davimc.ItSupport.repositories.LocalRepository;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
@@ -34,6 +35,14 @@ public class LocalService {
         Local obj = newDTO.copyToEntity();
         obj = repository.save(obj);
 
+        return new LocalDTO(obj);
+    }
+
+    public LocalDTO udpate(UUID id, LocalUpdateDTO dto) {
+        Local obj = find(id);
+        obj = dto.fromEntity(obj);
+
+        obj = repository.save(obj);
         return new LocalDTO(obj);
     }
 }
