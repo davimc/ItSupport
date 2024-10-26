@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.device.DeviceDTO;
 import br.com.github.davimc.ItSupport.dto.device.DeviceNewDTO;
+import br.com.github.davimc.ItSupport.dto.device.DeviceUpdateDTO;
 import br.com.github.davimc.ItSupport.entities.Device;
 import br.com.github.davimc.ItSupport.entities.User;
 import br.com.github.davimc.ItSupport.repositories.DeviceRepository;
@@ -51,10 +52,13 @@ public class DeviceService {
         return new DeviceDTO(obj);
     }
 
-    /*public DeviceDTO update(UUID id, DeviceUpdateDto dto) {
+    public DeviceDTO update(UUID id, DeviceUpdateDTO dto) {
         Device obj = find(id);
-        obj.setUpdateAt();
+        obj = dto.fromEntity(obj);
+        if(dto.getUser() != null) obj.setUser(userService.find(dto.getUser()));
 
-        return updatedDto;
-    }*/
+        obj.setUpdateAt();
+        obj = repository.save(obj);
+        return new DeviceDTO(obj);
+    }
 }
