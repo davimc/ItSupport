@@ -22,7 +22,7 @@ public class Address {
 
     private String publicPlace;
     private String district;
-    private int number;
+    private Integer number;
     private String complement;
     private String reference;
     private String cep;
