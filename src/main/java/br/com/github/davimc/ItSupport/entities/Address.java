@@ -26,6 +26,8 @@ public class Address {
     private String complement;
     private String reference;
     private String cep;
+    private String city;
+    private String state;
     private String branch;
 
     @ManyToOne

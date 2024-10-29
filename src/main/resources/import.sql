@@ -9,7 +9,7 @@ INSERT INTO tb_users (id, name, email, password ) VALUES ('4cdd3af0-76f5-4b57-82
 INSERT INTO tb_users (id, name, email, password) VALUES ('9a773374-56e1-490d-bba5-ff408d759a34', 'Miguel Gandra Martins', 'miguel@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG')
 INSERT INTO tb_users (id, name, email, password) VALUES ('185da9e3-30c3-4da6-b587-19eea39aa3ee', 'Giovanna Braga Saldanha', 'gio.braga@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG')
 
-INSERT INTO TB_ADDRESSES (id,public_Place,district,number,complement,reference,cep,branch, user_id) VALUES ('160a45ec-8362-4aa9-9e60-238f50ecd668', 'Rua dos Prazeres', 'Centro', 537, '','','65023-210', '','4cdd3af0-76f5-4b57-82ac-0a6c65c7045e')
+INSERT INTO TB_ADDRESSES (id,public_Place,district,number,complement,reference,cep,city, state, branch, user_id) VALUES ('160a45ec-8362-4aa9-9e60-238f50ecd668', 'Rua dos Prazeres', 'Centro', 537, '','','65023-210', 'São Luís', 'MA', '','4cdd3af0-76f5-4b57-82ac-0a6c65c7045e')
 
 
 INSERT INTO tb_role (id,authority) VALUES ('f027448b-3208-4828-b6c5-b3a1970dbb8b','ROLE_COSTUMER');
