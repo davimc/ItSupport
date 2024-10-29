@@ -1,17 +1,19 @@
 package br.com.github.davimc.ItSupport.controllers;
 
+import br.com.github.davimc.ItSupport.dto.job.JobDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserNewCostumerDTO;
 import br.com.github.davimc.ItSupport.services.UserService;
 import br.com.github.davimc.ItSupport.dto.user.UserDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.UUID;
 
 @RestController
@@ -22,6 +24,7 @@ public class UserController {
     private UserService service;
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Page<UserShortDTO>> findAll(Pageable pageable) {
         return ResponseEntity.ok().body(service.findAll(pageable));
     }
@@ -33,8 +36,19 @@ public class UserController {
     public ResponseEntity<Page<UserShortDTO>> findCostumers(Pageable pageable) {
         return ResponseEntity.ok().body(service.findByAuthorityCostumer(pageable));
     }
+
+    @PostMapping("/costumers/create")
+    @CrossOrigin(origins = "http://localhost:5173")
+    public ResponseEntity<UserShortDTO> createCostumer(@RequestBody @Valid UserNewCostumerDTO newDto) {
+        UserShortDTO dto = service.create(newDto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .build(dto.id());
+
+        return ResponseEntity.created(uri).body(dto);
+    }
     @GetMapping("/technicians")
     public ResponseEntity<Page<UserShortDTO>> findTech(Pageable pageable) {
         return ResponseEntity.ok().body(service.findByAuthorityTechnician(pageable));
     }
+
 }

@@ -1,9 +1,12 @@
 package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.login.RegisterDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserNewCostumerDTO;
+import br.com.github.davimc.ItSupport.entities.Address;
 import br.com.github.davimc.ItSupport.entities.Role;
 import br.com.github.davimc.ItSupport.entities.User;
 import br.com.github.davimc.ItSupport.projections.UserDetailsProjection;
+import br.com.github.davimc.ItSupport.repositories.AddressRepository;
 import br.com.github.davimc.ItSupport.repositories.RoleRepository;
 import br.com.github.davimc.ItSupport.repositories.UserRepository;
 import br.com.github.davimc.ItSupport.dto.user.UserDTO;
@@ -33,6 +36,8 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder encoder;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private AddressRepository addressRepository;
 
     protected User find(UUID id) {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(id, User.class));
@@ -96,5 +101,14 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     public Optional<User> findByLogin (String username) {
         return repository.findByEmail(username);
+    }
+
+    public UserShortDTO create(UserNewCostumerDTO dto) {
+        User obj = dto.copyToEntity();
+
+
+        obj = repository.save(obj);
+        Address address = addressRepository.save(new Address(null, dto.street(), dto.district(), dto.number(), null, null, dto.cep(), dto.city(), dto.state(), "",obj));
+        return new UserShortDTO(obj);
     }
 }
