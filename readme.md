@@ -16,12 +16,12 @@ inicialmente será desenvolvido o gerenciamento de serviços, clientes e técnic
 * Spring security
 
 ### Frontend
-
 * Typescript
 * React
 * Material UI
 * Router
-* Axios 
+* Axios
+* x-data-grid
 
 ## Entitdades
 * Cliente (User)
