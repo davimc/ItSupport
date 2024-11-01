@@ -6,9 +6,6 @@ na empresa que eu havia arrendado, no entanto há um potencial que futuramente s
 inicialmente será desenvolvido o gerenciamento de serviços, clientes e técnicos.
 
 
-
-
-
 ## Estruturas do projeto
 ### Backend
 
@@ -18,4 +15,19 @@ inicialmente será desenvolvido o gerenciamento de serviços, clientes e técnic
 * PostgreSQL
 * Spring security
 
+### Frontend
+
+* Typescript
+* React
+* 
+
+## Entitdades
+* Cliente (User)
+* Dispositivo (Device) -> Dispositivos eletrônicos
+* Serviços (Job) -> serviços para dispositivos eletrônicos 
+* Técnico (User)
+* Endereço (Address) -> Endereço dos usuários
+* Local (Local) -> Informa a localização de determindado dispositivo ou peça
+* Peça (Part) -> Peça disponíveis ou do dispositivo
+* Tarefa (Task) -> tarefas descrevem atividades realizadas nos serviços
 
