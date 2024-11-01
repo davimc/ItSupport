@@ -19,7 +19,9 @@ inicialmente será desenvolvido o gerenciamento de serviços, clientes e técnic
 
 * Typescript
 * React
-* 
+* Material UI
+* Router
+* Axios 
 
 ## Entitdades
 * Cliente (User)
