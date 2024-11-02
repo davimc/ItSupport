@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.dto.job.JobDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserNewCostumerDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserUpdateDTO;
 import br.com.github.davimc.ItSupport.services.UserService;
 import br.com.github.davimc.ItSupport.dto.user.UserDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
@@ -28,10 +29,12 @@ public class UserController {
     public ResponseEntity<Page<UserShortDTO>> findAll(Pageable pageable) {
         return ResponseEntity.ok().body(service.findAll(pageable));
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> findId(@PathVariable UUID id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
+
     @GetMapping("/costumers")
     public ResponseEntity<Page<UserShortDTO>> findCostumers(Pageable pageable) {
         return ResponseEntity.ok().body(service.findByAuthorityCostumer(pageable));
@@ -46,9 +49,14 @@ public class UserController {
 
         return ResponseEntity.created(uri).body(dto);
     }
+
     @GetMapping("/technicians")
     public ResponseEntity<Page<UserShortDTO>> findTech(Pageable pageable) {
         return ResponseEntity.ok().body(service.findByAuthorityTechnician(pageable));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<UserShortDTO> update(@PathVariable UUID id, @RequestBody @Valid UserUpdateDTO dto) {
+        return ResponseEntity.accepted().body(service.update(id, dto));
+    }
 }
