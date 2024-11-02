@@ -17,7 +17,7 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AuditableImpl implements UserDetails  {
+public class User extends AuditableImpl implements UserDetails {
 
     private String name;
 
@@ -30,9 +30,9 @@ public class User extends AuditableImpl implements UserDetails  {
 
     // TODO verificar se há necessidade de criar um dto para puxar o role ou utilizar Eager é satisfatório
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="tb_user_role",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id"))
+    @JoinTable(name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
@@ -42,6 +42,7 @@ public class User extends AuditableImpl implements UserDetails  {
     public void addRole(Role role) {
         roles.add(role);
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -71,6 +72,7 @@ public class User extends AuditableImpl implements UserDetails  {
     public boolean isEnabled() {
         return false;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
