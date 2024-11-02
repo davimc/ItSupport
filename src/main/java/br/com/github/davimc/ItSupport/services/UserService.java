@@ -118,6 +118,7 @@ public class UserService implements UserDetailsService {
         return new UserShortDTO(obj);
     }
 
+    @Transactional
     public UserShortDTO update(UUID id, UserUpdateDTO dto) {
         User obj = find(id);
         obj = dto.copyToEntity(obj);
