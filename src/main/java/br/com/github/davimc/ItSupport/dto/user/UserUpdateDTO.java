@@ -1,6 +1,7 @@
 package br.com.github.davimc.ItSupport.dto.user;
 
 import br.com.github.davimc.ItSupport.entities.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -17,6 +18,7 @@ public class UserUpdateDTO {
     private String name;
     private String obs;
     @Past(message = "Birthdate canno't be current or future")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthdate;
 
 
