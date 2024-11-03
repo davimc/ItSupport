@@ -18,6 +18,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     Optional<User> findByEmail(String email);
 
+    //TODO eu não consigo mudar para entidade única? Já que o login é único
     @Query(nativeQuery = true, value = """
             SELECT tb_users.email AS username, tb_users.password, tb_role.id AS roleId, tb_role.authority, tb_users.name, tb_users.obs
             FROM tb_users 
