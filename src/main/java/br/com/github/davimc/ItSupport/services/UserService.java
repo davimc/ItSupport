@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -78,25 +79,26 @@ public class UserService implements UserDetailsService {
             throw new IllegalArgumentException(dto.login() + "already registered");
         String passwordEncrypted = encoder.encode(dto.password());
 
-        //TODO alterar quando criar person
-        //TODO alterar address
-        User user = new User(dto.name(), dto.login(), passwordEncrypted, dto.obs(), LocalDate.now(), null, null);
-        user.getRoles().addAll(dto.roles().stream().map(roleRepository::findByAuthority).collect(Collectors.toSet()));
-        user = repository.save(user);
+        User obj = new User(dto.name(), dto.login(), passwordEncrypted, dto.obs(), LocalDate.now(), null, null);
+        //TODO java.lang.NullPointerException: Cannot invoke "java.util.Set.addAll(java.util.Collection)" because the return value of "br.com.github.davimc.ItSupport.entities.User.getRoles()" is null
+        //Set<Role> roles = dto.roles().stream().map(roleRepository::findByAuthority).collect(Collectors.toSet());
 
-        return new UserDTO(user);
+        obj = repository.save(obj);
+        addressRepository.save(new Address(null, dto.street(), dto.district(), dto.number(), dto.complement(), dto.reference(), dto.cep(), dto.city(), dto.state(), dto.branch(), obj));
+
+        return new UserDTO(obj);
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<UserDetailsProjection> result = repository.searchUserAndRolesByEmail(username);
-        if (result.size() == 0) {
+        if (result.isEmpty()) {
             throw new ObjectNotFoundException(username, User.class);
         }
         User obj = new User();
         obj.setEmail(username);
-        obj.setPassword(result.get(0).getPassword());
+        obj.setPassword(result.getFirst().getPassword());
         for (UserDetailsProjection projection : result) {
             obj.addRole(new Role(projection.getRoleId(), projection.getAuthority()));
         }
@@ -109,14 +111,6 @@ public class UserService implements UserDetailsService {
         return repository.findByEmail(username);
     }
 
-    public UserShortDTO create(UserNewCostumerDTO dto) {
-        User obj = dto.copyToEntity();
-
-
-        obj = repository.save(obj);
-        Address address = addressRepository.save(new Address(null, dto.street(), dto.district(), dto.number(), null, null, dto.cep(), dto.city(), dto.state(), "", obj));
-        return new UserShortDTO(obj);
-    }
 
     @Transactional
     public UserShortDTO update(UUID id, UserUpdateDTO dto) {

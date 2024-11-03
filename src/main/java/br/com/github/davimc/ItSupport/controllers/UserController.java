@@ -1,11 +1,10 @@
 package br.com.github.davimc.ItSupport.controllers;
 
-import br.com.github.davimc.ItSupport.dto.job.JobDTO;
-import br.com.github.davimc.ItSupport.dto.user.UserNewCostumerDTO;
-import br.com.github.davimc.ItSupport.dto.user.UserUpdateDTO;
-import br.com.github.davimc.ItSupport.services.UserService;
+import br.com.github.davimc.ItSupport.dto.login.RegisterDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserUpdateDTO;
+import br.com.github.davimc.ItSupport.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,14 +35,15 @@ public class UserController {
     }
 
     @GetMapping("/costumers")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Page<UserShortDTO>> findCostumers(Pageable pageable) {
         return ResponseEntity.ok().body(service.findByAuthorityCostumer(pageable));
     }
 
     @PostMapping("/costumers/create")
     @CrossOrigin(origins = "http://localhost:5173")
-    public ResponseEntity<UserShortDTO> createCostumer(@RequestBody @Valid UserNewCostumerDTO newDto) {
-        UserShortDTO dto = service.create(newDto);
+    public ResponseEntity<UserDTO> createCostumer(@RequestBody @Valid RegisterDTO registerDTO) {
+        UserDTO dto = service.insert(registerDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .build(dto.id());
 
