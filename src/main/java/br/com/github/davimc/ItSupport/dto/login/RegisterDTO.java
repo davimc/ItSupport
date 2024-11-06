@@ -13,6 +13,9 @@ public record RegisterDTO(@NotNull(message = "Login is required") @Email(message
                           String password,
                           @NotNull(message = "Name is required")
                           String name,
+                          @NotNull(message = "Document cannot be null")
+                                  @Size(min = 11, max = 19, message = "Document range is between 11-19 characteres")
+                          String document,
                           @NotNull(message = "CEP cannot be null") String cep,
                           String street,
                           Integer number,

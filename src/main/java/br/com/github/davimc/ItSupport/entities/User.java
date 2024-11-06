@@ -27,6 +27,7 @@ public class User extends AuditableImpl implements UserDetails {
     private String password;
     private String obs;
     private LocalDate birthdate;
+    private String document;
 
     // TODO verificar se há necessidade de criar um dto para puxar o role ou utilizar Eager é satisfatório
     @ManyToMany(fetch = FetchType.EAGER)
