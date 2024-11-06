@@ -21,6 +21,6 @@ public record UserNewCostumerDTO(@NotNull(message = "Name cannot be null") Strin
     public User copyToEntity() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         //todo lembrar de corrigir password
-        return new User(name, email, "$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG", "", LocalDate.parse(birthdate, formatter), null, null);
+        return new User(name, email, "$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG", "", LocalDate.parse(birthdate, formatter),document, null, null);
     }
 }
