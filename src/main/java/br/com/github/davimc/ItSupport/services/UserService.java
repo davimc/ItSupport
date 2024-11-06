@@ -66,7 +66,11 @@ public class UserService implements UserDetailsService {
         return repository.findUsersByRoleAuthority(pageable, authority);
     }
 
-    public Page<UserShortDTO> findByAuthorityCostumer(Pageable pageable) {
+    public Page<UserDTO> findByAuthorityCostumer(Pageable pageable) {
+        return findByAuthority(pageable, "ROLE_COSTUMER").map(UserDTO::new);
+    }
+    //Only id, document and name
+    public Page<UserShortDTO> findByAuthorityCostumerAbstract(Pageable pageable) {
         return findByAuthority(pageable, "ROLE_COSTUMER").map(UserShortDTO::new);
     }
 
@@ -79,7 +83,7 @@ public class UserService implements UserDetailsService {
             throw new IllegalArgumentException(dto.login() + "already registered");
         String passwordEncrypted = encoder.encode(dto.password());
 
-        User obj = new User(dto.name(), dto.login(), passwordEncrypted, dto.obs(), LocalDate.now(), null, null);
+        User obj = new User(dto.name(), dto.login(), passwordEncrypted, dto.obs(), LocalDate.now(), dto.document(), null, null);
         //TODO java.lang.NullPointerException: Cannot invoke "java.util.Set.addAll(java.util.Collection)" because the return value of "br.com.github.davimc.ItSupport.entities.User.getRoles()" is null
         //Set<Role> roles = dto.roles().stream().map(roleRepository::findByAuthority).collect(Collectors.toSet());
 
@@ -121,4 +125,6 @@ public class UserService implements UserDetailsService {
 
         return new UserShortDTO(obj);
     }
+
+
 }

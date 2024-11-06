@@ -36,8 +36,14 @@ public class UserController {
 
     @GetMapping("/costumers")
     @CrossOrigin(origins = "http://localhost:5173")
-    public ResponseEntity<Page<UserShortDTO>> findCostumers(Pageable pageable) {
+    public ResponseEntity<Page<UserDTO>> findCostumers(Pageable pageable) {
         return ResponseEntity.ok().body(service.findByAuthorityCostumer(pageable));
+    }
+
+    @GetMapping("/costumers/abstract")
+    @CrossOrigin(origins = "http://localhost:5173")
+    public ResponseEntity<Page<UserShortDTO>> findCostumersAbstract(Pageable pageable) {
+        return ResponseEntity.ok().body(service.findByAuthorityCostumerAbstract(pageable));
     }
 
     @PostMapping("/costumers/create")
