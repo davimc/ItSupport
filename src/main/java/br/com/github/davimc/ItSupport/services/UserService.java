@@ -1,7 +1,6 @@
 package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.login.RegisterDTO;
-import br.com.github.davimc.ItSupport.dto.user.UserNewCostumerDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserUpdateDTO;
 import br.com.github.davimc.ItSupport.entities.Address;
 import br.com.github.davimc.ItSupport.entities.Role;
@@ -11,7 +10,7 @@ import br.com.github.davimc.ItSupport.repositories.AddressRepository;
 import br.com.github.davimc.ItSupport.repositories.RoleRepository;
 import br.com.github.davimc.ItSupport.repositories.UserRepository;
 import br.com.github.davimc.ItSupport.dto.user.UserDTO;
-import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserTypifiedDTO;
 import br.com.github.davimc.ItSupport.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,9 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -58,25 +55,26 @@ public class UserService implements UserDetailsService {
         return new UserDTO(obj);
     }
 
-    public Page<UserShortDTO> findAll(Pageable pageable) {
-        return repository.findAll(pageable).map(UserShortDTO::new);
+    public Page<UserTypifiedDTO> findAll(Pageable pageable) {
+        return repository.findAll(pageable).map(UserTypifiedDTO::new);
     }
 
-    private Page<User> findByAuthority(Pageable pageable, String authority) {
+    private Page<User> findByAuthority(Pageable pageable, List<String> authority) {
         return repository.findUsersByRoleAuthority(pageable, authority);
     }
 
     public Page<UserDTO> findByAuthorityCostumer(Pageable pageable) {
-        return findByAuthority(pageable, "ROLE_COSTUMER").map(UserDTO::new);
+        return findByAuthority(pageable, List.of("ROLE_COSTUMER")).map(UserDTO::new);
+    }
+    public Page<UserTypifiedDTO> findByAuthorityTechnician(Pageable pageable) {
+        return findByAuthority(pageable, List.of("ROLE_TECHNICIAN")).map(UserTypifiedDTO::new);
     }
     //Only id, document and name
-    public Page<UserShortDTO> findByAuthorityCostumerAbstract(Pageable pageable) {
-        return findByAuthority(pageable, "ROLE_COSTUMER").map(UserShortDTO::new);
+    public Page<UserTypifiedDTO> findByTechAndCostumer(Pageable pageable) {
+        return findByAuthority(pageable, List.of("ROLE_COSTUMER","ROLE_TECHNICIAN")).map(UserTypifiedDTO::new);
     }
 
-    public Page<UserShortDTO> findByAuthorityTechnician(Pageable pageable) {
-        return findByAuthority(pageable, "ROLE_TECHNICIAN").map(UserShortDTO::new);
-    }
+
 
     public UserDTO insert(RegisterDTO dto) {
         if (findByLogin(dto.login()).isPresent())
@@ -117,13 +115,13 @@ public class UserService implements UserDetailsService {
 
 
     @Transactional
-    public UserShortDTO update(UUID id, UserUpdateDTO dto) {
+    public UserTypifiedDTO update(UUID id, UserUpdateDTO dto) {
         User obj = find(id);
         obj = dto.copyToEntity(obj);
 
         obj = repository.save(obj);
 
-        return new UserShortDTO(obj);
+        return new UserTypifiedDTO(obj);
     }
 
 

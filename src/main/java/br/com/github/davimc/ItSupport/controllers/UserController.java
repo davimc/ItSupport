@@ -2,7 +2,7 @@ package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.dto.login.RegisterDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserDTO;
-import br.com.github.davimc.ItSupport.dto.user.UserShortDTO;
+import br.com.github.davimc.ItSupport.dto.user.UserTypifiedDTO;
 import br.com.github.davimc.ItSupport.dto.user.UserUpdateDTO;
 import br.com.github.davimc.ItSupport.services.UserService;
 import jakarta.validation.Valid;
@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:5173")
-    public ResponseEntity<Page<UserShortDTO>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<UserTypifiedDTO>> findAll(Pageable pageable) {
         return ResponseEntity.ok().body(service.findAll(pageable));
     }
 
@@ -40,10 +40,10 @@ public class UserController {
         return ResponseEntity.ok().body(service.findByAuthorityCostumer(pageable));
     }
 
-    @GetMapping("/costumers/abstract")
+    @GetMapping("/typified")
     @CrossOrigin(origins = "http://localhost:5173")
-    public ResponseEntity<Page<UserShortDTO>> findCostumersAbstract(Pageable pageable) {
-        return ResponseEntity.ok().body(service.findByAuthorityCostumerAbstract(pageable));
+    public ResponseEntity<Page<UserTypifiedDTO>> findCostumersAbstract(Pageable pageable) {
+        return ResponseEntity.ok().body(service.findByTechAndCostumer(pageable));
     }
 
     @PostMapping("/costumers/create")
@@ -57,12 +57,12 @@ public class UserController {
     }
 
     @GetMapping("/technicians")
-    public ResponseEntity<Page<UserShortDTO>> findTech(Pageable pageable) {
+    public ResponseEntity<Page<UserTypifiedDTO>> findTech(Pageable pageable) {
         return ResponseEntity.ok().body(service.findByAuthorityTechnician(pageable));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserShortDTO> update(@PathVariable UUID id, @RequestBody @Valid UserUpdateDTO dto) {
+    public ResponseEntity<UserTypifiedDTO> update(@PathVariable UUID id, @RequestBody @Valid UserUpdateDTO dto) {
         return ResponseEntity.accepted().body(service.update(id, dto));
     }
 }

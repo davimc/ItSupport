@@ -30,6 +30,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     @Query("SELECT u FROM User u " +
             "LEFT JOIN u.roles r " +
-            "WHERE r.authority = :authority")
-    Page<User> findUsersByRoleAuthority(Pageable pageable, String authority);
+            "WHERE r.authorities IN :authorities")
+    Page<User> findUsersByRoleAuthority(Pageable pageable, List<String> authorities);
 }
