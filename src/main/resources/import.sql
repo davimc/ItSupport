@@ -7,7 +7,7 @@ INSERT INTO TB_LOCALS (id, name) VALUES ('6d613899-c0f0-4d8e-801a-b828e61914b4',
 
 INSERT INTO tb_users (id, name, email, password, document ) VALUES ('4cdd3af0-76f5-4b57-82ac-0a6c65c7045e', 'Davi Matos de Carvalho', 'davimatosc@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', '60727289365')
 INSERT INTO tb_users (id, name, email, password, document) VALUES ('9a773374-56e1-490d-bba5-ff408d759a34', 'Miguel Gandra Martins', 'miguel@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG','123678976')
-INSERT INTO tb_users (id, name, email, password, document) VALUES ('185da9e3-30c3-4da6-b587-19eea39aa3ee', 'Giovanna Braga Saldanha', 'gio.braga@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG','12315454')
+INSERT INTO tb_users (id, name, email, password, document) VALUES ('185da9e3-30c3-4da6-b587-19eea39aa3ee', 'Giovanna Cordeiro Saldanha Braga', 'gio.braga@hotmail.com','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG','12315454')
 
 INSERT INTO TB_ADDRESSES (id,public_Place,district,number,complement,reference,cep,city, state, branch, user_id) VALUES ('160a45ec-8362-4aa9-9e60-238f50ecd668', 'Rua dos Prazeres', 'Centro', 537, '','','65023-210', 'São Luís', 'MA', '','4cdd3af0-76f5-4b57-82ac-0a6c65c7045e')
 
