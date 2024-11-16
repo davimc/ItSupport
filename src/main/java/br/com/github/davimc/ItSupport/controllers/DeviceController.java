@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.controllers;
 
 import br.com.github.davimc.ItSupport.dto.device.DeviceDTO;
 import br.com.github.davimc.ItSupport.dto.device.DeviceNewDTO;
+import br.com.github.davimc.ItSupport.dto.device.DeviceShortDTO;
 import br.com.github.davimc.ItSupport.dto.device.DeviceUpdateDTO;
 import br.com.github.davimc.ItSupport.services.DeviceService;
 import jakarta.validation.Valid;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,6 +31,11 @@ public class DeviceController {
     @GetMapping("/{id}")
     public ResponseEntity<DeviceDTO> findId(@PathVariable UUID id) {
         return ResponseEntity.ok().body(service.findById(id));
+    }
+
+    @GetMapping("/bycostumer/{ownerId}")
+    public ResponseEntity<List<DeviceShortDTO>> findByOwner(@PathVariable UUID costumerId) {
+        return ResponseEntity.ok().body(service.findByOwner(costumerId));
     }
 
     @PostMapping

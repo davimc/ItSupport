@@ -2,6 +2,7 @@ package br.com.github.davimc.ItSupport.services;
 
 import br.com.github.davimc.ItSupport.dto.device.DeviceDTO;
 import br.com.github.davimc.ItSupport.dto.device.DeviceNewDTO;
+import br.com.github.davimc.ItSupport.dto.device.DeviceShortDTO;
 import br.com.github.davimc.ItSupport.dto.device.DeviceUpdateDTO;
 import br.com.github.davimc.ItSupport.entities.Device;
 import br.com.github.davimc.ItSupport.entities.User;
@@ -46,7 +47,7 @@ public class DeviceService {
     public DeviceDTO create(DeviceNewDTO dto) {
         Device obj = dto.copyToEntity();
         User u = userService.find(dto.getOwnerId());
-        obj.setUser(u);
+        obj.setOwner(u);
         obj = repository.save(obj);
 
         return new DeviceDTO(obj);
@@ -55,10 +56,16 @@ public class DeviceService {
     public DeviceDTO update(UUID id, DeviceUpdateDTO dto) {
         Device obj = find(id);
         obj = dto.fromEntity(obj);
-        if(dto.getUser() != null) obj.setUser(userService.find(dto.getUser()));
+        if(dto.getOwner() != null) obj.setOwner(userService.find(dto.getOwner()));
 
         obj.setUpdateAt();
         obj = repository.save(obj);
         return new DeviceDTO(obj);
+    }
+
+    public List<DeviceShortDTO> findByOwner(UUID ownerId) {
+        List<Device> devices = repository.findByOwner(ownerId);
+
+        return devices.stream().map(DeviceShortDTO::new).toList();
     }
 }
