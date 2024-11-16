@@ -4,11 +4,9 @@ import br.com.github.davimc.ItSupport.entities.enums.DeviceType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tb_devices")
@@ -33,7 +31,7 @@ public class Device extends AuditableImpl {
     @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
-    private User user;
+    private User owner;
 
     @ManyToMany(mappedBy = "devices")
     private List<Job> jobs = new ArrayList<>();

@@ -3,7 +3,6 @@ package br.com.github.davimc.ItSupport.dto.device;
 import br.com.github.davimc.ItSupport.entities.Device;
 import br.com.github.davimc.ItSupport.entities.enums.DeviceType;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,7 +24,7 @@ public class DeviceUpdateDTO {
 
     private String obs;
 
-    private UUID user;
+    private UUID owner;
 
 
     public Device fromEntity(Device obj) {
