@@ -4,8 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum DeviceType {
-    PRINTER(1, "Impressora"), PC(2, "PC"),
-    CELPHONE(3,"Smartphone"), OTHERS(4, "Outros");
+    PRINTER(1, "Impressora"), SCANNER(2, "Scanner"),
+    PC(3, "Computador"), LAPTOP(4, "Laptop"), CELPHONE(5,"Smartphone"),
+    UPS(6, "NoBreak"),  STABILIZER(7, "Estabilizador"),
+    OTHERS(8, "Outros");
 
     private final Integer cod;
     private final String desc;
