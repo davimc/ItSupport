@@ -21,7 +21,7 @@ public interface JobRepository extends JpaRepository<Job, UUID> {
             "FROM Job j " +
             "LEFT JOIN j.tasks t " +
             "INNER JOIN j.devices d " +
-            "INNER JOIN d.user c " +
+            "INNER JOIN d.owner c " +
             "INNER JOIN j.tech tc " +
             "GROUP BY j.os, j.status, j.createdAt, j.type, j.finishedAt, tc.name, c.name")
     Page<JobTotalDTO> findAllJobView(Pageable pageable);
