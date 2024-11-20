@@ -33,9 +33,9 @@ public class DeviceController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @GetMapping("/bycostumer/{ownerId}")
-    public ResponseEntity<List<DeviceShortDTO>> findByOwner(@PathVariable UUID costumerId) {
-        return ResponseEntity.ok().body(service.findByOwner(costumerId));
+    @GetMapping("/owner/{ownerId}")
+    public ResponseEntity<List<DeviceShortDTO>> findByOwner(@PathVariable UUID ownerId) {
+        return ResponseEntity.ok().body(service.findByOwner(ownerId));
     }
 
     @PostMapping
