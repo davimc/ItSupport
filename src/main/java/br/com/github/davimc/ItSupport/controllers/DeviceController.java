@@ -34,6 +34,7 @@ public class DeviceController {
     }
 
     @GetMapping("/owner/{ownerId}")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<List<DeviceShortDTO>> findByOwner(@PathVariable UUID ownerId) {
         return ResponseEntity.ok().body(service.findByOwner(ownerId));
     }
